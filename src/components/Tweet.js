@@ -9,22 +9,17 @@ import Toggle from 'material-ui/Toggle';
 export default class Tweet extends Component {
 
   render() {
+    const { username, content, date, photo } = this.props.data;
     return (
       <Card>
         <CardHeader
-          title="Twitter Username"
-          subtitle="10/30/2016"
-          avatar="images/ok-128.jpg"
+          title={username}
+          subtitle={date}
+          avatar={photo}
         />
         <CardText>
-          tweeet content goes here
+          {content}
         </CardText>
-        <CardMedia
-          expandable={true}
-          overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
-        >
-          <img src="images/nature-600-337.jpg" />
-        </CardMedia>
       </Card>
     );
   }

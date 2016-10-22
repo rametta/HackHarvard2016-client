@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
+
+// Material Design Components
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+// Custom Components
 import Container from './common/Container';
 import Row from './common/Row';
 import StockCard from './StockCard';
 import SearchBar from './Search';
 import Sidebar from './Sidebar';
+
+// Fake Data
+import tweets from './../fakeTweets';
 
 export default class App extends Component {
   constructor() {
@@ -15,7 +21,6 @@ export default class App extends Component {
       this.state = {
         drawer: false,
         drawerSymbol: "AAPL",
-        tweets: ["tweet 1", "tweet 2"],
         symbols: ["AAPL"]
       };
   }
@@ -30,7 +35,7 @@ export default class App extends Component {
             <div className="col-lg-12">
               <SearchBar />
               <Sidebar
-                tweets={this.state.tweets}
+                tweets={tweets}
                 symbol={this.state.drawerSymbol}
                 open={this.state.drawer}
                 toggleDrawer={this.toggleDrawer} />

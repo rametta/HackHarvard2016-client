@@ -13,8 +13,8 @@ import Tweet from './Tweet'
 export default class Sidebar extends Component {
 
   _renderTweets() {
-    return this.props.tweets.map(tweet => {
-      return <Tweet content={tweet} />;
+    return this.props.tweets.module.map(tweet => {
+      return <Tweet data={tweet} key={tweet.id} />;
     });
   }
 
