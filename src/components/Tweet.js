@@ -9,16 +9,16 @@ import Toggle from 'material-ui/Toggle';
 export default class Tweet extends Component {
 
   render() {
-    const { username, content, date, photo } = this.props.data;
+    const { user_name, text, date, profile_img } = this.props.data;
     return (
       <Card>
         <CardHeader
-          title={username}
+          title={user_name}
           subtitle={date}
-          avatar={photo}
+          avatar={profile_img}
         />
         <CardText>
-          {content}
+          {text}
         </CardText>
       </Card>
     );
