@@ -32,6 +32,7 @@
     "react-router": "*",
     "react-tap-event-plugin": "^1.0.0",
     "redux": "*",
+    "redux-logger": "^2.7.0",
     "redux-thunk": "^2.1.0"
   }
 }

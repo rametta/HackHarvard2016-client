@@ -26,7 +26,8 @@ class App extends Component {
       this.state = {
         drawer: false,
         drawerSymbol: "AAPL",
-        symbols: ["AAPL"]
+        symbols: ["AAPL"],
+        editCards: false
       };
 
 
@@ -35,17 +36,18 @@ class App extends Component {
   }
 
   toggleDrawer = symbol => this.setState({
-    drawerSymbol: symbol, 
+    drawerSymbol: symbol,
     drawer: !this.state.drawer
   });
 
   addCard(symbol) {
-    this.setState({symbols: this.state.symbols.concat(symbol)});
+      this.props.getStockHistorical(symbol,'2016-01-01', '2016-09-09');
+      this.setState({symbols: this.state.symbols.concat(symbol)});
   }
 
   _renderStockCards() {
     return this.state.symbols.map(symbol => {
-      return <StockCard key={symbol} symbol={symbol} toggleDrawer={symbol => this.toggleDrawer(symbol)} />;
+      return <StockCard editCard={this.state.editCards} key={symbol} symbol={symbol} toggleDrawer={symbol => this.toggleDrawer(symbol)} />;
     });
   }
 
@@ -58,6 +60,18 @@ class App extends Component {
     this.props.logout();
   }
 
+  fetchData(symbol) {
+    this.props.getStockHistorical(symbol,'2016-01-01', '2016-09-09');
+  }
+
+  editCards(){
+    this.setState({editCards: !this.state.editCards})
+  }
+
+  removeCard(symbol) {
+    console.log("removing...", symbol);
+  }
+
   render() {
     console.log('user:!!', this.props.user);
     return (
@@ -65,7 +79,10 @@ class App extends Component {
         <Container fluid>
           <Row>
             <div className="col-lg-12">
-              <SearchBar addCard={symbol => this.addCard(symbol)}/>
+              <SearchBar addCard={symbol => this.addCard(symbol)}
+                        editCards={() => this.editCards()}
+                        removeCard={symbol => this.removeCard(symbol)}
+              />
               <Sidebar
                 tweets={tweets}
                 symbol={this.state.drawerSymbol}
@@ -81,6 +98,7 @@ class App extends Component {
           <Row>
             <RaisedButton
               primary
+              className="loginbtn"
               label={this.props.user.length ? "Logout" : "Login"}
               onTouchTap={this.props.user.length ? this.logout : this.login} />
           </Row>
@@ -90,6 +108,6 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ login, logout, test, user }) => ({ login, logout, test, user });
+const mapStateToProps = ({ login, logout, test, user, getStockHistorical, histData }) => ({ login, logout, test, user, getStockHistorical, histData });
 
 export default connect(mapStateToProps, actions)(App);

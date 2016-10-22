@@ -4,11 +4,12 @@ import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+import ContentRemove from 'material-ui/svg-icons/content/remove';
 import FlatButton from 'material-ui/FlatButton';
 
 // Custom Components
 import Container from './common/Container';
-
+import Row from './common/Row';
 export default class SearchBar extends Component {
 
     constructor() {
@@ -49,7 +50,7 @@ export default class SearchBar extends Component {
       return (
         <div className="SearchBar" >
           <Container fluid >
-              <div className="row" >
+              <Row>
                   <div className="col-sm-8 col-xs-9 col-sm-offset-2" >
                     <TextField
                       hintText="Ex. $AAPL"
@@ -62,13 +63,21 @@ export default class SearchBar extends Component {
                       floatingLabelFixed={false} />
                   </div>
                 <div className="col-xs-2" >
+
                   <FloatingActionButton
                     onTouchTap={() => this.getStockData()}
                     className="btn-add-stock">
                     <ContentAdd />
                   </FloatingActionButton>
+
+                  <FloatingActionButton
+                    backgroundColor="#f44336"
+                    onTouchTap={() => this.props.editCards()}
+                    className="btn-remove-stock">
+                    <ContentRemove />
+                  </FloatingActionButton>
                 </div>
-              </div>
+              </Row>
           </Container>
          </div>
       );

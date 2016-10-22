@@ -16,31 +16,8 @@ import Row from './common/Row';
 import CardSection from './CardSection';
 import KPI from './KPI';
 
-const doughnutChartOptions = {
-  maintainAspectRatio: true,
-	labels: [
-		'Negative',
-		'Positive',
-		'Neutral'
-	],
-	datasets: [{
-		data: [300, 50, 100],
-		backgroundColor: [
-		'#FF6384',
-		'#36A2EB',
-		'#FFCE56'
-		],
-		hoverBackgroundColor: [
-		'#FF6384',
-		'#36A2EB',
-		'#FFCE56'
-		]
-	}]
-};
-
-
 const lineChartOptions = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
   datasets: [
     {
       label: '$AAPL',
@@ -96,6 +73,13 @@ export default class StockCard extends Component {
     this.props.toggleDrawer(this.props.symbol);
   }
 
+  renderButton() {
+    const symbol = this.props.symbol;
+    if(this.props.editCard){
+      return( <RaisedButton label="Delete Card" onTouchTap={symbol => this.props.removeCard(symbol)} />);
+    }
+  }
+
   render() {
     const symbol = `$${this.props.symbol.toUpperCase()}`;
     const label = `Sentiment: ${this.state.sentiment}`;
@@ -103,8 +87,7 @@ export default class StockCard extends Component {
       <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange} className="stock-card circular">
 
         <CardHeader
-          title="Apple"
-          subtitle={symbol}
+          title={symbol}
           avatar="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/2000px-Apple_logo_black.svg.png"
           actAsExpander
           showExpandableButton
@@ -118,7 +101,6 @@ export default class StockCard extends Component {
             </CardSection>
 
             <CardSection borders>
-
               <KPI icon={"green"} label={label} value={"2"} />
             </CardSection>
 
@@ -145,6 +127,7 @@ export default class StockCard extends Component {
             secondary
             label="Live Tweets"
             onTouchTap={this.toggleDrawer} />
+          {this.renderButton()}
         </CardActions>
 
       </Card>
