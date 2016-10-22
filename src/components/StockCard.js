@@ -1,12 +1,37 @@
 import React, { Component } from 'react';
+
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import { ToolbarSeparator } from 'material-ui/Toolbar';
 import RaisedButton from 'material-ui/RaisedButton';
 import Toggle from 'material-ui/Toggle';
 
+import Chart from 'chart.js';
+import { Doughnut } from 'react-chartjs-2';
+
 import Row from './common/Row';
 import CardSection from './CardSection';
 import KPI from './KPI';
+
+const data = {
+	labels: [
+		'Red',
+		'Green',
+		'Yellow'
+	],
+	datasets: [{
+		data: [300, 50, 100],
+		backgroundColor: [
+		'#FF6384',
+		'#36A2EB',
+		'#FFCE56'
+		],
+		hoverBackgroundColor: [
+		'#FF6384',
+		'#36A2EB',
+		'#FFCE56'
+		]
+	}]
+};
 
 export default class StockCard extends Component {
 
@@ -47,17 +72,21 @@ export default class StockCard extends Component {
 
         <CardText>
           <Row>
+
             <CardSection border>
               <KPI roi={"27.4%"} />
             </CardSection>
-            <CardSection border>Section 2</CardSection>
-            <CardSection>Section 3</CardSection>
+
+            <CardSection border>
+              <Doughnut data={data} />
+            </CardSection>
+
+            <CardSection>
+
+            </CardSection>
+
           </Row>
         </CardText>
-
-        <CardMedia expandable>
-          <img src="http://www.mrgeek.me/wp-content/uploads/2013/03/Chart-JS.png" />
-        </CardMedia>
 
         <CardText expandable>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
