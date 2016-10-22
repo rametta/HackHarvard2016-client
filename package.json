@@ -1,7 +1,7 @@
 {
   "name": "hackharvard2016-client",
   "version": "1.0.0",
-  "description": "Hack Harvard 2016 - Client",
+  "description": "Hack Harvard 2016 - Client ",
   "main": "index.js",
   "repository": "",
   "scripts": {

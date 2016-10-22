@@ -1,9 +1,22 @@
 import React, { Component } from 'react';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-export default class App extends Component {
+import Card from './Card';
+
+export default class SideBar extends Component {
+  constructor() {
+      super();
+      injectTapEventPlugin();
+  }
+
   render() {
     return (
-      <div>Hack Harvard 2016 - Client</div>
+      <MuiThemeProvider>
+      <div>
+          <Card />
+      </div>
+      </MuiThemeProvider>
     );
   }
 }
