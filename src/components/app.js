@@ -57,7 +57,7 @@ class App extends Component {
   }
 
   fetchData(symbol) {
-    this.props.getStockHistorical(symbol,'2016-01-01', '2016-09-09').then(console.log(this.props));
+    this.props.getStockHistorical(symbol,'2016-01-01', '2016-09-09');
   }
 
   render() {
