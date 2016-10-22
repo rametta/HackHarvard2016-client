@@ -1,5 +1,21 @@
+/* Extra CSS for Card */
 @media (min-width: 544px) {
   .border-right {
     border-right: 1px solid #333;
   }
+}
+
+/* Extra CSS for Card */
+.card-section {
+  height: 100px;
+}
+
+/* Return on Investment KPI */
+.kpi {
+  font-size: 42px;
+}
+
+.kpi-container {
+  text-align: center;
+  font-size: 16px;
 }

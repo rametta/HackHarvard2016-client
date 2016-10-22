@@ -6,6 +6,7 @@ import Toggle from 'material-ui/Toggle';
 
 import Row from './common/Row';
 import CardSection from './CardSection';
+import KPI from './KPI';
 
 export default class StockCard extends Component {
 
@@ -46,7 +47,9 @@ export default class StockCard extends Component {
 
         <CardText>
           <Row>
-            <CardSection border>Section 1</CardSection>
+            <CardSection border>
+              <KPI roi={"27.4%"} />
+            </CardSection>
             <CardSection border>Section 2</CardSection>
             <CardSection>Section 3</CardSection>
           </Row>
