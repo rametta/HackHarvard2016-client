@@ -4,6 +4,9 @@ import { ToolbarSeparator } from 'material-ui/Toolbar';
 import RaisedButton from 'material-ui/RaisedButton';
 import Toggle from 'material-ui/Toggle';
 
+import Row from './common/Row';
+import CardSection from './CardSection';
+
 export default class StockCard extends Component {
 
   constructor(props) {
@@ -42,7 +45,11 @@ export default class StockCard extends Component {
         />
 
         <CardText>
-          put <ToolbarSeparator /> sections <ToolbarSeparator /> here
+          <Row>
+            <CardSection border>Section 1</CardSection>
+            <CardSection border>Section 2</CardSection>
+            <CardSection>Section 3</CardSection>
+          </Row>
         </CardText>
 
         <CardMedia expandable>
