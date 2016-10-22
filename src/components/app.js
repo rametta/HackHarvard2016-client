@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import Card from './Card';
+import Container from './common/Container';
+import Row from './common/Row';
+import StockCard from './StockCard';
 import SearchBar from './Search'
 
 export default class SideBar extends Component {
@@ -14,10 +16,18 @@ export default class SideBar extends Component {
   render() {
     return (
       <MuiThemeProvider>
-      <div>
-          <Card />
-          <SearchBar />
-      </div>
+      <Container fluid>
+        <Row>
+          <div className="col-lg-12">
+            <SearchBar />
+          </div>
+        </Row>
+        <Row>
+          <div className="col-lg-12">
+            <StockCard />
+          </div>
+        </Row>
+      </Container>
       </MuiThemeProvider>
     );
   }
