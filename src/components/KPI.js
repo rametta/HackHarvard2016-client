@@ -21,7 +21,7 @@ export default class KPI extends Component {
   render() {
     return (
       <div className="kpi-container">
-        <span style={{fontSize: 26}}>{this.props.label}</span>
+        <span className="circular" style={{fontSize: 26}}>{this.props.label}</span>
         <div className="kpi">
           {this.props.value}
           {this.getIcon()}

@@ -17,8 +17,13 @@
   }
 }
 
+.circular {
+    font-family: 'circular';
+}
+
 /* Return on Investment KPI */
 .kpi {
+  font-family: 'circular';
   font-size: 5em;
 }
 
@@ -32,6 +37,7 @@
 }
 
 .stock-card {
+  font-family: 'circular';
   margin-bottom: 20px;
 }
 

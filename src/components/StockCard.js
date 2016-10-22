@@ -71,6 +71,7 @@ export default class StockCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      sentiment: 64,
       expanded: false
     };
   }
@@ -97,8 +98,9 @@ export default class StockCard extends Component {
 
   render() {
     const symbol = `$${this.props.symbol.toUpperCase()}`;
+    const label = `Sentiment: ${this.state.sentiment}`;
     return (
-      <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange} className="stock-card">
+      <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange} className="stock-card circular">
 
         <CardHeader
           title="Apple"
@@ -116,19 +118,8 @@ export default class StockCard extends Component {
             </CardSection>
 
             <CardSection borders>
-              <Row>
-                <div className="col-md-6 col-md-push-3">
-                  <Slider
-                    disabled
-                    min={0}
-                    max={100}
-                    step={1}
-                    defaultValue={50}
-                    sliderStyle={{height: 10, width: 10}}
-                  />
-                </div>
-              </Row>
-              <KPI icon={"green"} label={"Sentiment: 65"} value={"2"} />
+
+              <KPI icon={"green"} label={label} value={"2"} />
             </CardSection>
 
             <CardSection>
@@ -138,7 +129,7 @@ export default class StockCard extends Component {
           </Row>
         </CardText>
 
-        <CardText expandable>
+        <CardText expandable className="circular">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
           Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
