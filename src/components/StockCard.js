@@ -90,15 +90,10 @@ export default class StockCard extends Component {
     this.setState({expanded: true});
   }
 
-  toggleDrawer = () => {
-    this.props.toggleDrawer();
-
-  }
-
   render() {
     const symbol = `$${this.props.symbol}`;
     return (
-      <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange}>
+      <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange} className="stock-card">
 
         <CardHeader
           title="Apple"
@@ -141,7 +136,7 @@ export default class StockCard extends Component {
           <RaisedButton
             secondary
             label="Live Tweets"
-            onTouchTap={this.toggleDrawer} />
+            onTouchTap={this.props.toggleDrawer} />
         </CardActions>
 
       </Card>

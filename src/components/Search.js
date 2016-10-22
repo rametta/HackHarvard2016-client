@@ -31,13 +31,11 @@ export default class SearchBar extends Component {
 
     getStockData() {
       if(this.validate()){
-        console.log("Loading....", this.state.input);
-        this.setState({ errorText: "" });
-      } else {
-        this.setState({ errorText: "A symbol must be between 1 and 5 characters" });
-        console.log("error");
+        this.props.addCard(this.state.input);
+        this.setState({ errorText: "", input: "" });
+        return;
       }
-
+      this.setState({ errorText: "A symbol must be between 1 and 5 characters" });
     }
 
     render() {

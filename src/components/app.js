@@ -27,13 +27,23 @@ export default class App extends Component {
 
   toggleDrawer = () => this.setState({drawer: !this.state.drawer});
 
+  addCard(symbol) {
+    this.setState({symbols: this.state.symbols.concat(symbol)});
+  }
+
+  _renderStockCards() {
+    return this.state.symbols.map(symbol => {
+      return <StockCard key={symbol} symbol={symbol} toggleDrawer={this.toggleDrawer} />;
+    });
+  }
+
   render() {
     return (
       <MuiThemeProvider>
         <Container fluid>
           <Row>
             <div className="col-lg-12">
-              <SearchBar />
+              <SearchBar addCard={symbol => this.addCard(symbol)}/>
               <Sidebar
                 tweets={tweets}
                 symbol={this.state.drawerSymbol}
@@ -43,9 +53,7 @@ export default class App extends Component {
           </Row>
           <Row>
             <div className="col-lg-12">
-              <StockCard
-                symbol={this.state.symbols[0]}
-                toggleDrawer={this.toggleDrawer}/>
+              {this._renderStockCards()}
             </div>
           </Row>
         </Container>
