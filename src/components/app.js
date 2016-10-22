@@ -3,6 +3,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import Card from './Card';
+import SearchBar from './Search'
 
 export default class SideBar extends Component {
   constructor() {
@@ -15,6 +16,7 @@ export default class SideBar extends Component {
       <MuiThemeProvider>
       <div>
           <Card />
+          <SearchBar />
       </div>
       </MuiThemeProvider>
     );
