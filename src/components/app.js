@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 // Material Design Components
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
 
 // Custom Components
 import Container from './common/Container';
@@ -11,10 +12,14 @@ import StockCard from './StockCard';
 import SearchBar from './Search';
 import Sidebar from './Sidebar';
 
+// Actions + Redux
+import * as actions from '../actions';
+import { connect } from 'react-redux';
+
 // Fake Data
 import tweets from './../fakeTweets';
 
-export default class App extends Component {
+class App extends Component {
   constructor() {
       super();
       injectTapEventPlugin();
@@ -23,6 +28,8 @@ export default class App extends Component {
         drawerSymbol: "AAPL",
         symbols: ["AAPL"]
       };
+
+      this.login = this.login.bind(this);
   }
 
   toggleDrawer = symbol => this.setState({
@@ -38,6 +45,14 @@ export default class App extends Component {
     return this.state.symbols.map(symbol => {
       return <StockCard key={symbol} symbol={symbol} toggleDrawer={symbol => this.toggleDrawer(symbol)} />;
     });
+  }
+
+  login() {
+    const username = 'hassan';
+    const password = '123';
+
+    console.log('this.props: ', this.props);
+    this.props.login();
   }
 
   render() {
@@ -59,8 +74,18 @@ export default class App extends Component {
               {this._renderStockCards()}
             </div>
           </Row>
+          <Row>
+            <RaisedButton
+              primary
+              label={this.state.loggedIn ? "Logout" : "Login"}
+              onTouchTap={this.login} />
+          </Row>
         </Container>
       </MuiThemeProvider>
     );
   }
 }
+
+const mapStateToProps = ({ login }) => ({ login });
+
+export default connect(mapStateToProps, actions)(App);
