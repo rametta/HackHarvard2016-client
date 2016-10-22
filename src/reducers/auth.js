@@ -3,9 +3,10 @@ import {
 } from '../actions/types';
 
 export default (state = [], action) => {
+  console.log(action);
   switch (action.type) {
     case SET_AUTH:
-      return [...state, ...action.payload];
+      return action.payload;
   }
 
   return state;

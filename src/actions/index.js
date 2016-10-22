@@ -7,18 +7,44 @@ import {
 let base = 'http://localhost:3000';
 let yahoo_base = 'https://query.yahooapis.com/v1/public/yql?q=';
 
+export const login = (data) => {
+  return function(dispatch) {
+      // Send API Request
+      var formData = new FormData();
+      formData.append("username", data.username);
+      formData.append("password", data.password);
+      var obj = {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: "username="+data.username+"&password="+data.password
+      };
 
-export const login = () => {
-  // Send API Request
-  fetch(base + '/auth/login', { method: 'POST', body: {username: 'hassan', password: '123' }} )
-  .then(response => response.json())
-  .then(json => console.log('json: ', json))
-  .catch(err => console.log('err: ', err));
 
-  return {
-    type: SET_AUTH,
-    payload: { username : 'hassan' }
-  }
+      fetch(base + '/auth/login', obj)
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(json) {
+            console.log('success: ', json);
+            dispatch({
+                type: SET_AUTH,
+                payload: json
+            });
+          })
+          .catch(function(err) {
+            console.log('err: ', err);
+          });
+  };
+};
+
+export const logout = () => {
+    return {
+        type: SET_AUTH,
+        payload: ''
+    }
 };
 
 export const getStockHistorical = (symbol, start, end, format='json') => {

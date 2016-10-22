@@ -20,8 +20,8 @@ import { connect } from 'react-redux';
 import tweets from './../fakeTweets';
 
 class App extends Component {
-  constructor() {
-      super();
+  constructor(props) {
+      super(props);
       injectTapEventPlugin();
       this.state = {
         drawer: false,
@@ -30,7 +30,9 @@ class App extends Component {
         editCards: false
       };
 
+
       this.login = this.login.bind(this);
+      this.logout = this.logout.bind(this);
   }
 
   toggleDrawer = symbol => this.setState({
@@ -55,11 +57,12 @@ class App extends Component {
   }
 
   login() {
-    const username = 'hassan';
-    const password = '123';
+    this.props.login({username: 'john', password: '123'});
+    //this.props.test();
+  }
 
-    console.log('this.props: ', this.props);
-    this.props.login();
+  logout() {
+    this.props.logout();
   }
 
   fetchData(symbol) {
@@ -75,7 +78,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props);
+    console.log('user:!!', this.props.user);
     return (
       <MuiThemeProvider>
         <Container fluid>
@@ -100,8 +103,8 @@ class App extends Component {
             <RaisedButton
               primary
               className="loginbtn"
-              label={this.state.loggedIn ? "Logout" : "Login"}
-              onTouchTap={this.login} />
+              label={this.props.user.length ? "Logout" : "Login"}
+              onTouchTap={this.props.user.length ? this.logout : this.login} />
           </Row>
         </Container>
       </MuiThemeProvider>
@@ -109,6 +112,6 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ login , getStockHistorical, histData}) => ({ login, getStockHistorical, histData});
+const mapStateToProps = ({ login, logout, test, user, getStockHistorical, histData }) => ({ login, logout, test, user, getStockHistorical, histData });
 
 export default connect(mapStateToProps, actions)(App);
