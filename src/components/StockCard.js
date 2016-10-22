@@ -15,7 +15,7 @@ import Row from './common/Row';
 import CardSection from './CardSection';
 import KPI from './KPI';
 
-const doughnutChartData = {
+const doughnutChartOptions = {
   maintainAspectRatio: true,
 	labels: [
 		'Negative',
@@ -38,7 +38,7 @@ const doughnutChartData = {
 };
 
 
-const lineChartData = {
+const lineChartOptions = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
   datasets: [
     {
@@ -90,6 +90,11 @@ export default class StockCard extends Component {
     this.setState({expanded: true});
   }
 
+  toggleDrawer = () => {
+    this.props.toggleDrawer();
+
+  }
+
   render() {
     return (
       <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange}>
@@ -110,11 +115,11 @@ export default class StockCard extends Component {
             </CardSection>
 
             <CardSection borders>
-              <Doughnut data={doughnutChartData} />
+              <Doughnut data={doughnutChartOptions} />
             </CardSection>
 
             <CardSection>
-              <Line data={lineChartData} />
+              <Line data={lineChartOptions} />
             </CardSection>
 
           </Row>
@@ -132,6 +137,10 @@ export default class StockCard extends Component {
             primary
             label={this.state.expanded ? "View Less" : "View More"}
             onTouchTap={this.toggleCardExpand} />
+          <RaisedButton
+            secondary
+            label="Live Tweets"
+            onTouchTap={this.toggleDrawer} />
         </CardActions>
 
       </Card>
