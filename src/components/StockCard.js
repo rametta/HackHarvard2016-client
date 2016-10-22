@@ -116,13 +116,19 @@ export default class StockCard extends Component {
             </CardSection>
 
             <CardSection borders>
-              <Slider
-                min={0}
-                max={100}
-                step={1}
-                defaultValue={50}
-              />
-              <KPI label="Sentiment" value={"2"} />
+              <Row>
+                <div className="col-md-6 col-md-push-3">
+                  <Slider
+                    disabled
+                    min={0}
+                    max={100}
+                    step={1}
+                    defaultValue={50}
+                    sliderStyle={{height: 10, width: 10}}
+                  />
+                </div>
+              </Row>
+              <KPI icon={"green"} label={"Sentiment: 65"} value={"2"} />
             </CardSection>
 
             <CardSection>
