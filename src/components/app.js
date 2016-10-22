@@ -20,8 +20,8 @@ import { connect } from 'react-redux';
 import tweets from './../fakeTweets';
 
 class App extends Component {
-  constructor() {
-      super();
+  constructor(props) {
+      super(props);
       injectTapEventPlugin();
       this.state = {
         drawer: false,
@@ -29,7 +29,9 @@ class App extends Component {
         symbols: ["AAPL"]
       };
 
+
       this.login = this.login.bind(this);
+      this.logout = this.logout.bind(this);
   }
 
   toggleDrawer = symbol => this.setState({
@@ -48,14 +50,16 @@ class App extends Component {
   }
 
   login() {
-    const username = 'hassan';
-    const password = '123';
+    this.props.login({username: 'john', password: '123'});
+    //this.props.test();
+  }
 
-    console.log('this.props: ', this.props);
-    this.props.login();
+  logout() {
+    this.props.logout();
   }
 
   render() {
+    console.log('user:!!', this.props.user);
     return (
       <MuiThemeProvider>
         <Container fluid>
@@ -77,8 +81,8 @@ class App extends Component {
           <Row>
             <RaisedButton
               primary
-              label={this.state.loggedIn ? "Logout" : "Login"}
-              onTouchTap={this.login} />
+              label={this.props.user.length ? "Logout" : "Login"}
+              onTouchTap={this.props.user.length ? this.logout : this.login} />
           </Row>
         </Container>
       </MuiThemeProvider>
@@ -86,6 +90,6 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ login }) => ({ login });
+const mapStateToProps = ({ login, logout, test, user }) => ({ login, logout, test, user });
 
 export default connect(mapStateToProps, actions)(App);
