@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'circular';
+    src: url('./fonts/CircularStd-Book.otf');
+}
+
+#app {
+  font-family: 'circular';
+}
+
 /* Extra CSS for Card */
 @media (min-width: 768px) {
   .border-right {
@@ -8,8 +17,13 @@
   }
 }
 
+.circular {
+    font-family: 'circular';
+}
+
 /* Return on Investment KPI */
 .kpi {
+  font-family: 'circular';
   font-size: 5em;
 }
 
@@ -23,5 +37,10 @@
 }
 
 .stock-card {
+  font-family: 'circular';
   margin-bottom: 20px;
+}
+
+.svg {
+  margin-left: 20px;
 }
