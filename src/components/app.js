@@ -38,6 +38,7 @@ class App extends Component {
   });
 
   addCard(symbol) {
+    this.fetchData(symbol);
     this.setState({symbols: this.state.symbols.concat(symbol)});
   }
 
@@ -55,12 +56,11 @@ class App extends Component {
     this.props.login();
   }
 
-  fetchData() {
-    this.props.getStockHistorical('TSLA','2016-01-01', '2016-09-09');
+  fetchData(symbol) {
+    this.props.getStockHistorical(symbol,'2016-01-01', '2016-09-09').then(console.log(this.props));
   }
 
   render() {
-    this.fetchData();
     return (
       <MuiThemeProvider>
         <Container fluid>
