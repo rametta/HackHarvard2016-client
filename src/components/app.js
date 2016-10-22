@@ -45,7 +45,12 @@ class App extends Component {
 
   _renderStockCards() {
     return this.state.symbols.map(symbol => {
-      return <StockCard editCard={this.state.editCards} key={symbol} symbol={symbol} toggleDrawer={symbol => this.toggleDrawer(symbol)} />;
+      return <StockCard
+                removeCard={ticker => this.removeCard(ticker)}
+                editCard={this.state.editCards}
+                key={symbol}
+                symbol={symbol}
+                toggleDrawer={symbol => this.toggleDrawer(symbol)} />;
     });
   }
 
@@ -65,8 +70,8 @@ class App extends Component {
     this.setState({editCards: !this.state.editCards})
   }
 
-  removeCard(symbol) {
-    console.log("removing...", symbol);
+  removeCard(ticker) {
+    console.log(ticker);
   }
 
   render() {
@@ -78,7 +83,6 @@ class App extends Component {
             <div className="col-lg-12">
               <SearchBar addCard={symbol => this.addCard(symbol)}
                         editCards={() => this.editCards()}
-                        removeCard={symbol => this.removeCard(symbol)}
               />
               <Sidebar
                 tweets={tweets}
