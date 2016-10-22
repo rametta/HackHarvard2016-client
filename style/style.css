@@ -1,5 +1,5 @@
 /* Extra CSS for Card */
-@media (min-width: 544px) {
+@media (min-width: 768px) {
   .border-right {
     border-right: 1px solid #333;
   }

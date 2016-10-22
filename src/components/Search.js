@@ -29,6 +29,13 @@ export default class SearchBar extends Component {
       return true;
     }
 
+    onInputChange = ev => {
+      this.setState({ input: ev.target.value })
+      if (ev.keyCode === 13) {
+        this.getStockData();
+      }
+    }
+
     getStockData() {
       if(this.validate()){
         this.props.addCard(this.state.input);
@@ -49,7 +56,8 @@ export default class SearchBar extends Component {
                       fullWidth
                       floatingLabelText={this.state.labelText}
                       errorText={this.state.errorText}
-                      onChange = {ev => this.setState({ input: ev.target.value })}
+                      onChange={this.onInputChange}
+                      onKeyUp={this.onInputChange}
                       value={this.state.input}
                       floatingLabelFixed={false} />
                   </div>
