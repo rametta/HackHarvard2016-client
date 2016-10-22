@@ -26,12 +26,12 @@ export default class SearchBar extends Component {
     render() {
         //function to check whether inputted text is proper length to search stock
         this.validate();
-        return ( 
+        return (
             <div className="SearchBar" >
                 <Container fluid >
                     <div className="row" >
                         <div className="col-md-8" >
-                        <TextField 
+                        <TextField
                         hintText = "Ex. $AAPL"
                         fullWidth = {
                             true
@@ -48,14 +48,14 @@ export default class SearchBar extends Component {
                         floatingLabelFixed = {
                             false
                         }
-                        /> 
-                        </div> 
+                        />
+                        </div>
                       <div className="col-md-4" >
                             <FloatingActionButton style="Default">
                             <ContentAdd />
                             </FloatingActionButton>
-                      </div> 
-                    </div> 
+                      </div>
+                    </div>
                 </Container>
              </div>
         );

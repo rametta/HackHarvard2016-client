@@ -3,11 +3,9 @@
   .border-right {
     border-right: 1px solid #333;
   }
-}
-
-/* Extra CSS for Card */
-.card-section {
-  height: 100px;
+  .border-left {
+    border-left: 1px solid #333;
+  }
 }
 
 /* Return on Investment KPI */
