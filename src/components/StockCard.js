@@ -73,9 +73,10 @@ export default class StockCard extends Component {
     this.props.toggleDrawer(this.props.symbol);
   }
 
-  renderButton = () => {
-    if(this.props.changeable){
-      return( <RaisedButton label="Delete Card" />);
+  renderButton() {
+    const symbol = this.props.symbol;
+    if(this.props.editCard){
+      return( <RaisedButton label="Delete Card" onTouchTap={symbol => this.props.removeCard(symbol)} />);
     }
   }
 
@@ -126,7 +127,7 @@ export default class StockCard extends Component {
             secondary
             label="Live Tweets"
             onTouchTap={this.toggleDrawer} />
-          {this.renderButton}
+          {this.renderButton()}
         </CardActions>
 
       </Card>

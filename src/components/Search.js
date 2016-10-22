@@ -63,12 +63,14 @@ export default class SearchBar extends Component {
                       floatingLabelFixed={false} />
                   </div>
                 <div className="col-xs-2" >
+
                   <FloatingActionButton
                     onTouchTap={() => this.getStockData()}
                     className="btn-add-stock">
                     <ContentAdd />
                   </FloatingActionButton>
-                    <FloatingActionButton
+
+                  <FloatingActionButton
                     backgroundColor="#f44336"
                     onTouchTap={() => this.props.editCards()}
                     className="btn-remove-stock">
