@@ -29,8 +29,8 @@ export default class SearchBar extends Component {
         return ( 
             <div className="SearchBar" >
                 <Container fluid >
-                    <div class="row" >
-                        <div class="col-md-8" >
+                    <div className="row" >
+                        <div className="col-md-8" >
                         <TextField 
                         hintText = "Ex. $AAPL"
                         fullWidth = {
@@ -50,8 +50,10 @@ export default class SearchBar extends Component {
                         }
                         /> 
                         </div> 
-                      <div class="col-md-4" >
-                            <FlatButton label="Default" />
+                      <div className="col-md-4" >
+                            <FloatingActionButton style="Default">
+                            <ContentAdd />
+                            </FloatingActionButton>
                       </div> 
                     </div> 
                 </Container>

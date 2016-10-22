@@ -13,14 +13,15 @@ export default class Sidebar extends Component {
 
   render() {
     return (
-        <div>
-        <RaisedButton
-          label="Toggle Drawer"
-          onTouchTap={this.handleToggle}
-        />
-        <Drawer width={200} openSecondary={true} open={this.state.open} >
-          <AppBar title="AppBar" />
-        </Drawer>
+        <div className="Sidebar">
+            <RaisedButton
+            label="Toggle Drawer"
+            onTouchTap={this.handleToggle}
+            />
+            <Drawer width={200} openSecondary={true} open={this.state.open} >
+            <AppBar title="AppBar" />
+            </Drawer>
       </div>
+    )
   }
 }
