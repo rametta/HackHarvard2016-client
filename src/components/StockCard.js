@@ -16,31 +16,8 @@ import Row from './common/Row';
 import CardSection from './CardSection';
 import KPI from './KPI';
 
-const doughnutChartOptions = {
-  maintainAspectRatio: true,
-	labels: [
-		'Negative',
-		'Positive',
-		'Neutral'
-	],
-	datasets: [{
-		data: [300, 50, 100],
-		backgroundColor: [
-		'#FF6384',
-		'#36A2EB',
-		'#FFCE56'
-		],
-		hoverBackgroundColor: [
-		'#FF6384',
-		'#36A2EB',
-		'#FFCE56'
-		]
-	}]
-};
-
-
 const lineChartOptions = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
   datasets: [
     {
       label: '$AAPL',
@@ -118,7 +95,6 @@ export default class StockCard extends Component {
             </CardSection>
 
             <CardSection borders>
-
               <KPI icon={"green"} label={label} value={"2"} />
             </CardSection>
 

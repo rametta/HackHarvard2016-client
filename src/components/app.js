@@ -33,7 +33,7 @@ class App extends Component {
   }
 
   toggleDrawer = symbol => this.setState({
-    drawerSymbol: symbol, 
+    drawerSymbol: symbol,
     drawer: !this.state.drawer
   });
 
@@ -55,7 +55,12 @@ class App extends Component {
     this.props.login();
   }
 
+  fetchData() {
+    this.props.getStockHistorical('TSLA','2016-01-01', '2016-09-09');
+  }
+
   render() {
+    this.fetchData();
     return (
       <MuiThemeProvider>
         <Container fluid>
@@ -86,6 +91,6 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ login }) => ({ login });
+const mapStateToProps = ({ login , getStockHistorical}) => ({ login, getStockHistorical});
 
 export default connect(mapStateToProps, actions)(App);
