@@ -51,7 +51,7 @@ export default class SearchBar extends Component {
                         />
                         </div>
                       <div className="col-md-4" >
-                            <FloatingActionButton style="Default">
+                            <FloatingActionButton>
                             <ContentAdd />
                             </FloatingActionButton>
                       </div>
