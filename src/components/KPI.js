@@ -10,6 +10,7 @@ export default class KPI extends Component {
         {this.props.label}
         <div className="kpi">
           {this.props.value}
+          <img className="svg" src="./../../style/img/arrowDown.svg" />
         </div>
       </div>
     );

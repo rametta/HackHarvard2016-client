@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'circular';
+    src: url('./fonts/CircularStd-Book.otf');
+}
+
+#app {
+  font-family: 'circular';
+}
+
 /* Extra CSS for Card */
 @media (min-width: 768px) {
   .border-right {
@@ -24,4 +33,8 @@
 
 .stock-card {
   margin-bottom: 20px;
+}
+
+.svg {
+  margin-left: 20px;
 }

@@ -112,7 +112,7 @@ export default class StockCard extends Component {
           <Row>
 
             <CardSection>
-              <KPI value={"27.4%"} />
+              <KPI label="Potential ROI" value={"27.4%"} />
             </CardSection>
 
             <CardSection borders>
@@ -121,10 +121,8 @@ export default class StockCard extends Component {
                 max={100}
                 step={1}
                 defaultValue={50}
-                value={this.state.secondSlider}
-                onChange={this.handleSecondSlider}
               />
-              <KPI label="Sentiment" value={"2 ^"} />
+              <KPI label="Sentiment" value={"2"} />
             </CardSection>
 
             <CardSection>
