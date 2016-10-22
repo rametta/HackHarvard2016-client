@@ -13,7 +13,9 @@ import Tweet from './Tweet'
 export default class Sidebar extends Component {
 
   _renderTweets() {
-    // Render list of <Tweets /> here with Array.map();
+    return this.props.tweets.map(tweet => {
+      return <Tweet content={tweet} />;
+    });
   }
 
   render() {
@@ -26,11 +28,9 @@ export default class Sidebar extends Component {
             <IconButton onTouchTap={this.props.toggleDrawer} >
               <NavigationClose/>
             </IconButton> }/>
-        <Tweet />
-        <Tweet />
-        <Tweet />
-        <Tweet />
-        <Tweet />
+
+        {this._renderTweets()}
+
       </Drawer>
     );
   }

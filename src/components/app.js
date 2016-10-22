@@ -12,7 +12,12 @@ export default class App extends Component {
   constructor() {
       super();
       injectTapEventPlugin();
-      this.state = { drawer: false, drawerSymbol: "" };
+      this.state = {
+        drawer: false,
+        drawerSymbol: "AAPL",
+        tweets: ["tweet 1", "tweet 2"],
+        symbols: ["AAPL"]
+      };
   }
 
   toggleDrawer = () => this.setState({drawer: !this.state.drawer});
@@ -25,6 +30,7 @@ export default class App extends Component {
             <div className="col-lg-12">
               <SearchBar />
               <Sidebar
+                tweets={this.state.tweets}
                 symbol={this.state.drawerSymbol}
                 open={this.state.drawer}
                 toggleDrawer={this.toggleDrawer} />
@@ -33,7 +39,7 @@ export default class App extends Component {
           <Row>
             <div className="col-lg-12">
               <StockCard
-                setSymbol={symbol => this.setState({drawerSymbol: symbol})}
+                symbol={this.state.symbols[0]}
                 toggleDrawer={this.toggleDrawer}/>
             </div>
           </Row>

@@ -70,7 +70,7 @@ export default class StockCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      expanded: false,
+      expanded: false
     };
   }
 
@@ -96,12 +96,13 @@ export default class StockCard extends Component {
   }
 
   render() {
+    const symbol = `$${this.props.symbol}`;
     return (
       <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange}>
 
         <CardHeader
           title="Apple"
-          subtitle="$AAPL"
+          subtitle={symbol}
           avatar="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/2000px-Apple_logo_black.svg.png"
           actAsExpander
           showExpandableButton
