@@ -38,8 +38,8 @@ class App extends Component {
   });
 
   addCard(symbol) {
-    this.fetchData(symbol);
-    this.setState({symbols: this.state.symbols.concat(symbol)});
+      this.props.getStockHistorical(symbol,'2016-01-01', '2016-09-09');
+      this.setState({symbols: this.state.symbols.concat(symbol)});
   }
 
   _renderStockCards() {
@@ -56,11 +56,8 @@ class App extends Component {
     this.props.login();
   }
 
-  fetchData(symbol) {
-    this.props.getStockHistorical(symbol,'2016-01-01', '2016-09-09');
-  }
-
   render() {
+    console.log(this.props);
     return (
       <MuiThemeProvider>
         <Container fluid>
@@ -91,6 +88,6 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ login , getStockHistorical}) => ({ login, getStockHistorical});
+const mapStateToProps = ({ login , getStockHistorical, histData}) => ({ login, getStockHistorical, histData});
 
 export default connect(mapStateToProps, actions)(App);

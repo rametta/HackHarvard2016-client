@@ -28,10 +28,10 @@ export const getStockHistorical = (symbol, start, end, format='json') => {
      fetch(query)
        .then(response => response.json())
        .then(json => {
-         const results = json.query.results;
+         const result = json.query.results;
          dispatch({
            type: HIST_STOCK_DATA,
-           payload: results
+           payload: result
          })
        });
    }
