@@ -32,9 +32,15 @@
   font-size: 16px;
 }
 
-.btn-add-stock {
+.btn-add-stock, .btn-remove-stock{
   margin: 20px 0px 20px 0px;
 }
+
+.btn-remove-stock{
+  margin: 20px 0px 20px 10px;
+}
+
+
 
 .stock-card {
   font-family: 'circular';
@@ -43,4 +49,11 @@
 
 .svg {
   margin-left: 20px;
+}
+
+.loginbtn{
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+  margin: 0px 20px 10px 0px;
 }

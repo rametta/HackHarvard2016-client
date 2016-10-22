@@ -26,7 +26,8 @@ class App extends Component {
       this.state = {
         drawer: false,
         drawerSymbol: "AAPL",
-        symbols: ["AAPL"]
+        symbols: ["AAPL"],
+        changeable: false
       };
 
       this.login = this.login.bind(this);
@@ -44,7 +45,7 @@ class App extends Component {
 
   _renderStockCards() {
     return this.state.symbols.map(symbol => {
-      return <StockCard key={symbol} symbol={symbol} toggleDrawer={symbol => this.toggleDrawer(symbol)} />;
+      return <StockCard changeable={this.state.changeable} key={symbol} symbol={symbol} toggleDrawer={symbol => this.toggleDrawer(symbol)} />;
     });
   }
 
@@ -56,6 +57,15 @@ class App extends Component {
     this.props.login();
   }
 
+  fetchData(symbol) {
+    this.props.getStockHistorical(symbol,'2016-01-01', '2016-09-09');
+  }
+
+  editCards(){
+    this.setState({changeable: !this.state.changeable})
+  }
+
+>>>>>>> 39bcf38d9d700238769a2bed69d2dd749ce4896d
   render() {
     console.log(this.props);
     return (
@@ -63,7 +73,9 @@ class App extends Component {
         <Container fluid>
           <Row>
             <div className="col-lg-12">
-              <SearchBar addCard={symbol => this.addCard(symbol)}/>
+              <SearchBar addCard={symbol => this.addCard(symbol)}
+                        editCards={() => this.editCards()}
+              />
               <Sidebar
                 tweets={tweets}
                 symbol={this.state.drawerSymbol}
@@ -79,6 +91,7 @@ class App extends Component {
           <Row>
             <RaisedButton
               primary
+              className="loginbtn"
               label={this.state.loggedIn ? "Logout" : "Login"}
               onTouchTap={this.login} />
           </Row>
