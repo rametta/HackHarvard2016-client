@@ -25,7 +25,10 @@ export default class App extends Component {
       };
   }
 
-  toggleDrawer = () => this.setState({drawer: !this.state.drawer});
+  toggleDrawer = symbol => this.setState({
+    drawerSymbol: symbol, 
+    drawer: !this.state.drawer
+  });
 
   addCard(symbol) {
     this.setState({symbols: this.state.symbols.concat(symbol)});
@@ -33,7 +36,7 @@ export default class App extends Component {
 
   _renderStockCards() {
     return this.state.symbols.map(symbol => {
-      return <StockCard key={symbol} symbol={symbol} toggleDrawer={this.toggleDrawer} />;
+      return <StockCard key={symbol} symbol={symbol} toggleDrawer={symbol => this.toggleDrawer(symbol)} />;
     });
   }
 

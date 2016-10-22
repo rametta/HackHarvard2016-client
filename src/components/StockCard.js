@@ -5,6 +5,7 @@ import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'm
 import { ToolbarSeparator } from 'material-ui/Toolbar';
 import RaisedButton from 'material-ui/RaisedButton';
 import Toggle from 'material-ui/Toggle';
+import Slider from 'material-ui/Slider'
 
 // Chart Components
 import Chart from 'chart.js';
@@ -90,8 +91,12 @@ export default class StockCard extends Component {
     this.setState({expanded: true});
   }
 
+  toggleDrawer = () => {
+    this.props.toggleDrawer(this.props.symbol);
+  }
+
   render() {
-    const symbol = `$${this.props.symbol}`;
+    const symbol = `$${this.props.symbol.toUpperCase()}`;
     return (
       <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange} className="stock-card">
 
@@ -107,11 +112,19 @@ export default class StockCard extends Component {
           <Row>
 
             <CardSection>
-              <KPI roi={"27.4%"} />
+              <KPI value={"27.4%"} />
             </CardSection>
 
             <CardSection borders>
-              <Doughnut data={doughnutChartOptions} />
+              <Slider
+                min={0}
+                max={100}
+                step={1}
+                defaultValue={50}
+                value={this.state.secondSlider}
+                onChange={this.handleSecondSlider}
+              />
+              <KPI label="Sentiment" value={"2 ^"} />
             </CardSection>
 
             <CardSection>
@@ -136,7 +149,7 @@ export default class StockCard extends Component {
           <RaisedButton
             secondary
             label="Live Tweets"
-            onTouchTap={this.props.toggleDrawer} />
+            onTouchTap={this.toggleDrawer} />
         </CardActions>
 
       </Card>

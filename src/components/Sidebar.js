@@ -19,7 +19,7 @@ export default class Sidebar extends Component {
   }
 
   render() {
-    const drawerTitle = `Tweets for ${this.props.symbol}`;
+    const drawerTitle = `Tweets for $${this.props.symbol}`;
     return (
       <Drawer width={400} openSecondary={false} open={this.props.open} >
         <AppBar

@@ -7,9 +7,9 @@ export default class KPI extends Component {
   render() {
     return (
       <div className="kpi-container">
-        Potential ROI
+        {this.props.label}
         <div className="kpi">
-          {this.props.roi}
+          {this.props.value}
         </div>
       </div>
     );
