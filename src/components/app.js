@@ -43,7 +43,7 @@ class App extends Component {
 
   addCard = symbol => {
       //const URL = `http://52.44.145.202:3001/search/tweets?q=${symbol}%20OR%20%24${symbol}&count=15&lang=en`;
-      const URL = `http://52.44.145.202:3001/search/tweets?q=${symbol}`;
+      const URL = `http://52.44.145.202:3001/search/tweets?q=${symbol}&lang=en`;
 
       const config = {
         headers: {
