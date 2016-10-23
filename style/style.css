@@ -64,3 +64,15 @@
 .alignCenter {
   text-align: center;
 }
+
+.placeholder {
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: inline;
+}

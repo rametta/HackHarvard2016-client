@@ -30,7 +30,7 @@ class App extends Component {
         data: [],
         editCards: false,
         isDialogVisible: true,
-        isLoadingStock: false,
+        isLoadingStock: false
       };
 
       this.addCard = this.addCard.bind(this);
@@ -77,7 +77,6 @@ class App extends Component {
 
   _renderStockCards() {
     if (this.props.user.length && this.props.user[0].username) {
-      console.log('we made it', this.state.data);
       return this.state.data.map((stock, i) => {
         return <StockCard
           removeCard={() => this.removeCard(stock)}
@@ -89,11 +88,11 @@ class App extends Component {
       });
     } else {
       return (
-        <Row>
-          <div>
-            <img className="empty-screen" src="./../../style/img/empty-screen.png" />
-          </div>
-        </Row>
+        <Container>
+          <Row>
+            <img className="placeholder" src="./../../style/img/empty-screen.png" />
+          </Row>
+        </Container>
       )
     }
   }
