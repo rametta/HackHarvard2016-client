@@ -49,7 +49,7 @@ class App extends Component {
   _renderStockCards() {
     return this.state.symbols.map(symbol => {
       return <StockCard
-                removeCard={ticker => this.removeCard(ticker)}
+                removeCard={ticker => this.removeCard(symbol)}
                 editCard={this.state.editCards}
                 key={symbol}
                 symbol={symbol}
@@ -75,10 +75,11 @@ class App extends Component {
   }
 
   removeCard(ticker) {
-    var symbols = this.state.symbols;
+    var updatedList = this.state.symbols.filter(function(elem, index) {
+      return elem === ticker ? false : true;
+    });
 
-    symbols.
-    console.log(ticker);
+    this.setState({symbols: updatedList});
   }
 
   render() {
