@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import { ToolbarSeparator } from 'material-ui/Toolbar';
 import RaisedButton from 'material-ui/RaisedButton';
+import Paper from 'material-ui/Paper';
 import tickers from '../tickerSymbols';
 
 // Chart Components
@@ -142,6 +143,7 @@ export default class StockCard extends Component {
     const photo = this.findSymbolImg();
 
     return (
+    <Paper zDepth={4} rounded={false}>
       <Card
         expanded={this.state.expanded}
         onExpandChange={this.handleExpandChange}
@@ -182,6 +184,7 @@ export default class StockCard extends Component {
         </CardActions>
 
       </Card>
+      </ Paper>
     );
   }
 }
