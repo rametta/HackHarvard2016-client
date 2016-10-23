@@ -90,6 +90,7 @@ export default class StockCard extends Component {
   }
 
   toggleDrawer = () => {
+    console.log('this.props.id', this.props.id);
     this.props.toggleDrawer(this.props.id);
   }
 

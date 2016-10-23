@@ -33,14 +33,17 @@ class App extends Component {
       this.addCard = this.addCard.bind(this);
   }
 
-  toggleDrawer = id => this.setState({
-    drawerSymbolID: id,
-    drawer: !this.state.drawer
-  });
+  toggleDrawer = stock => {
+    console.log('stock; ', stock);
+    this.setState({
+      tweets: stock.tweets,
+      drawer: !this.state.drawer
+    });
+  };
 
   addCard = symbol => {
       //const URL = `http://52.44.145.202:3001/search/tweets?q=${symbol}%20OR%20%24${symbol}&count=15&lang=en`;
-      const URL = `http://52.44.145.202:3001/search/tweets?q=${symbol}`;
+      const URL = `http://52.44.145.202:3001/search/tweets?q=${symbol}&lang=en`;
 
       const config = {
         headers: {
@@ -66,8 +69,8 @@ class App extends Component {
   }
 
   _renderStockCards() {
-    console.log('ASDASDAS', this.props.user);
     if (this.props.user.length && this.props.user[0].username) {
+      console.log('we made it', this.state.data);
       return this.state.data.map((stock, i) => {
         return <StockCard
           removeCard={stock => this.removeCard(stock)}
@@ -75,7 +78,7 @@ class App extends Component {
           key={i}
           id={i}
           data={stock}
-          toggleDrawer={stock => this.toggleDrawer(stock)}/>;
+          toggleDrawer={() => this.toggleDrawer(stock)}/>;
       });
     } else {
       return <div>Show 1 card here</div>
@@ -96,7 +99,7 @@ class App extends Component {
 
   render() {
     const { isDialogVisible } = this.state;
-
+    console.log('this.state.data', this.state.data);
     return (
       <MuiThemeProvider>
         <Container fluid>
@@ -106,7 +109,7 @@ class App extends Component {
                         editCards={() => this.editCards()}
               />
               <Sidebar
-                data={this.state}
+                data={this.state.tweets}
                 open={this.state.drawer}
                 toggleDrawer={this.toggleDrawer} />
             </div>
