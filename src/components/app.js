@@ -73,7 +73,7 @@ class App extends Component {
       console.log('we made it', this.state.data);
       return this.state.data.map((stock, i) => {
         return <StockCard
-          removeCard={stock => this.removeCard(stock)}
+          removeCard={() => this.removeCard(stock)}
           editCard={this.state.editCards}
           key={i}
           id={i}
@@ -89,12 +89,15 @@ class App extends Component {
     this.setState({editCards: !this.state.editCards})
   }
 
-  removeCard(ticker) {
-    var updatedList = this.state.symbols.filter(function(elem, index) {
-      return elem === ticker ? false : true;
+  removeCard(stock) {
+    var updatedList = this.state.data.filter(function(elem, index) {
+      console.log(elem.sentiment);
+      console.log(stock.sentiment);
+      return elem.sentiment == stock.sentiment ? false : true;
     });
 
-    this.setState({symbols: updatedList});
+    console.log('updated list: ', updatedList);
+    this.setState({data: updatedList});
   }
 
   render() {
