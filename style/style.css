@@ -33,7 +33,7 @@
 }
 
 .btn-group {
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 20px;
 }
 
@@ -59,4 +59,8 @@
   right: 0px;
   bottom: 0px;
   margin: 0px 20px 10px 0px;
+}
+
+.alignCenter {
+  text-align: center;
 }
