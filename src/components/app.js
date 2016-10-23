@@ -45,7 +45,7 @@ class App extends Component {
   addCard(symbol) {
       const BASE_URL = `http://52.44.145.202:3000/search/tweets?q=${symbol}%20OR%20%24${symbol}&count=15&lang=en`;
 
-      console.log(symbol);
+      console.log('symbol: ' + symbol);
 
       /*axios.get(BASE_URL)
       .then(function (response) {
@@ -56,7 +56,7 @@ class App extends Component {
         console.log(error);
       });*/
 
-
+      this.setState({symbols: this.state.symbols.concat(symbol)});
   }
 
   _renderStockCards() {

@@ -16,8 +16,8 @@ import tickers from './../tickerSymbols';
 
 export default class SearchBar extends Component {
 
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
       this.state = {
         input: "",
         isValid: true,
@@ -25,6 +25,10 @@ export default class SearchBar extends Component {
         labelText: "Enter a Stock Symbol",
         errorText: ""
       };
+
+      this.validate = this.validate.bind(this);
+      this.onInputChange = this.onInputChange.bind(this);
+      this.getStockData = this.getStockData.bind(this);
     }
 
     //This is for the predictive text input auto-complete feature
@@ -44,11 +48,14 @@ export default class SearchBar extends Component {
     }
 
     onInputChange = ev => {
-      this.setState({ input: ev.target.value })
-      if (ev.keyCode === 13) {
-        this.getStockData();
-      }
-    }
+      console.log('autocomplete!!' + ev.keyCode + ' ' + ev.target.value);
+      ev.persist();
+      this.setState({ input: ev.target.value }, function() {
+        if (ev.keyCode === 13) {
+          this.getStockData();
+        }
+      });
+    };
 
     getStockData() {
       if(this.validate()){
@@ -60,6 +67,7 @@ export default class SearchBar extends Component {
     }
 
     render() {
+      console.log(this.state.input);
       return (
         <div className="SearchBar" >
           <Container fluid >
