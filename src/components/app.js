@@ -71,26 +71,23 @@ class App extends Component {
   _renderStockCards() {
     console.log('ASDASDAS', this.props.user);
     if (this.props.user.length && this.props.user[0].username) {
-      if (!this.state.symbols) {
-        return <div>No Cards to Show</div>
-      }
-
-      return this.state.symbols.map(symbol => {
+      console.log('we made it');
+      return this.state.data.map((stock, i) => {
         return <StockCard
-          removeCard={ticker => this.removeCard(symbol)}
+          removeCard={stock => this.removeCard(stock)}
           editCard={this.state.editCards}
-          key={symbol}
-          symbol={symbol}
-          toggleDrawer={symbol => this.toggleDrawer(symbol)}/>;
+          key={i}
+          id={i}
+          data={stock}
+          toggleDrawer={stock => this.toggleDrawer(stock)}/>;
       });
     } else {
       return <div>Show 1 card here</div>
     }
   }
 
-  fetchData(symbol) {
-    this.props.getStockHistorical(symbol,'2016-01-01', '2016-09-09');
-  }
+
+
 
   editCards(){
     this.setState({editCards: !this.state.editCards})
