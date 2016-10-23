@@ -125,6 +125,8 @@ export default class StockCard extends Component {
         <CardActions>
           <RaisedButton
             label="Live Tweets"
+            backgroundColor="#29B6F6"
+            labelColor="#ffffff"
             onTouchTap={this.toggleDrawer} />
           <RaisedButton
             primary
