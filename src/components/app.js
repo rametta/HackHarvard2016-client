@@ -18,9 +18,6 @@ import DialogModal from './AuthModal';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
 
-// Fake Data
-import tweets from './../fakeTweets';
-
 class App extends Component {
   constructor(props) {
       super(props);
