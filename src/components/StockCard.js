@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import { ToolbarSeparator } from 'material-ui/Toolbar';
 import RaisedButton from 'material-ui/RaisedButton';
+import Paper from 'material-ui/Paper';
 import tickers from '../tickerSymbols';
 
 // Chart Components
@@ -147,6 +148,7 @@ findSymbolImg(symbol){
       return <div>Loading...</div>
     }
     return (
+    <Paper zDepth={4} rounded={false}>
       <Card
         expanded={this.state.expanded}
         onExpandChange={this.handleExpandChange}
@@ -187,6 +189,7 @@ findSymbolImg(symbol){
         </CardActions>
 
       </Card>
+      </ Paper>
     );
   }
 }
