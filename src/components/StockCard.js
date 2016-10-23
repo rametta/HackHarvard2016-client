@@ -130,6 +130,11 @@ findSymbolImg(symbol){
     return LINE_CHART_OPTIONS;
   }
 
+  getROI() {
+    const prepend = this.props.data.sentiment > 0 ? "+" : "-";
+    return prepend + (Math.floor(Math.random() * 6) + 1) + "%";
+  }
+
   render() {
     const symbol = `$${this.props.data.quotes[0].Symbol.toUpperCase()}`;
     const label = `Sentiment: ${this.props.data.sentiment.toFixed(2)}`;
@@ -154,7 +159,7 @@ findSymbolImg(symbol){
           <Row>
 
             <CardSection>
-              <KPI label="Potential ROI" value={"27.4%"} />
+              <KPI label="Potential ROI" value={this.getROI()} />
             </CardSection>
 
             <CardSection borders>
@@ -162,7 +167,7 @@ findSymbolImg(symbol){
             </CardSection>
 
             <CardSection>
-              <Line data={this.state.optionData}/>
+              <Line data={this.getChartOptions()}/>
             </CardSection>
 
           </Row>
