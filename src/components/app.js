@@ -107,17 +107,9 @@ class App extends Component {
             </div>
           </Row>
           <Row>
-            <RaisedButton
-              primary
-              className="loginbtn"
-              label={this.props.user.length ? "Logout" : "Login"}
-              onTouchTap={this.props.user.length ? this.logout : this.login} />
-          </Row>
-          <Row>
             <DialogModal
               isVisble={isDialogVisible}
               action={this.login}
-              className="loginbtn"
             />
           </Row>
         </Container>

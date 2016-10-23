@@ -41,6 +41,10 @@
   margin-left: 10px;
 }
 
+.btn-delete {
+  color: #ffffff;
+}
+
 .stock-card {
   font-family: 'circular';
   margin-bottom: 20px;

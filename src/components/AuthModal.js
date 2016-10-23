@@ -49,7 +49,7 @@ export default class DialogModal extends React.Component {
 
     return (
       <div>
-        <RaisedButton label="Login" onTouchTap={this.handleOpen} />
+        <RaisedButton primary className="loginbtn" label="Login" onTouchTap={this.handleOpen} />
         <Dialog
           title="Sign in to save your portfolio!"
           actions={actions}
@@ -61,6 +61,7 @@ export default class DialogModal extends React.Component {
             hintText="Username"
           />
           <TextField
+            type="password"
             hintText="Password"
           />
         </Dialog>
