@@ -3,11 +3,8 @@ import React, { Component } from 'react';
 // Material Design Components
 import AutoComplete from 'material-ui/AutoComplete';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
+
 import ContentAdd from 'material-ui/svg-icons/content/add';
-<<<<<<< HEAD
-=======
-import ContentCreate from 'material-ui/svg-icons/content/create';
->>>>>>> 2487d8276cc745de4f32eea6d0ad07a384a35cc4
 import FlatButton from 'material-ui/FlatButton';
 
 // Custom Components
@@ -88,7 +85,6 @@ export default class SearchBar extends Component {
                       <ContentAdd />
                     </FloatingActionButton>
 
-<<<<<<< HEAD
                     <FloatingActionButton
                       backgroundColor="#f44336"
                       onTouchTap={() => this.props.editCards()}
@@ -96,20 +92,6 @@ export default class SearchBar extends Component {
                         <img className="edit-icon" src="./../../style/img/edit.svg" />
                     </FloatingActionButton>
                   </div>
-=======
-                  <FloatingActionButton
-                    onTouchTap={() => this.getStockData()}
-                    className="btn-add-stock">
-                    <ContentAdd />
-                  </FloatingActionButton>
-
-                  <FloatingActionButton
-                    backgroundColor="#f44336"
-                    onTouchTap={() => this.props.editCards()}
-                    className="btn-remove-stock">
-                    <ContentCreate />
-                  </FloatingActionButton>
->>>>>>> 2487d8276cc745de4f32eea6d0ad07a384a35cc4
                 </div>
               </Row>
           </Container>
