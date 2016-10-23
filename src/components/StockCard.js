@@ -76,7 +76,8 @@ export default class StockCard extends Component {
   renderButton() {
     const symbol = this.props.symbol;
     if(this.props.editCard){
-      return( <RaisedButton label="Delete Card" onTouchTap={symbol => this.props.removeCard(symbol)} />);
+      return( <RaisedButton label="Delete Card" backgroundColor="#f44336"
+      onTouchTap={symbol => this.props.removeCard(symbol)} />);
     }
   }
 
@@ -84,7 +85,10 @@ export default class StockCard extends Component {
     const symbol = `$${this.props.symbol.toUpperCase()}`;
     const label = `Sentiment: ${this.state.sentiment}`;
     return (
-      <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange} className="stock-card circular">
+      <Card
+        expanded={this.state.expanded}
+        onExpandChange={this.handleExpandChange}
+        className="stock-card circular">
 
         <CardHeader
           title={symbol}
@@ -124,7 +128,6 @@ export default class StockCard extends Component {
             label={this.state.expanded ? "View Less" : "View More"}
             onTouchTap={this.toggleCardExpand} />
           <RaisedButton
-            secondary
             label="Live Tweets"
             onTouchTap={this.toggleDrawer} />
           {this.renderButton()}
