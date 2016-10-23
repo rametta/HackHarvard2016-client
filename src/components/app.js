@@ -11,6 +11,7 @@ import Row from './common/Row';
 import StockCard from './StockCard';
 import SearchBar from './Search';
 import Sidebar from './Sidebar';
+import DialogModal from './AuthModal';
 
 // Actions + Redux
 import * as actions from '../actions';
@@ -27,7 +28,8 @@ class App extends Component {
         drawer: false,
         drawerSymbol: "AAPL",
         symbols: ["AAPL"],
-        editCards: false
+        editCards: false,
+        isDialogVisible: true,
       };
 
 
@@ -74,6 +76,8 @@ class App extends Component {
 
   render() {
     console.log('user:!!', this.props.user);
+    const { isDialogVisible } = this.state;
+
     return (
       <MuiThemeProvider>
         <Container fluid>
@@ -101,6 +105,13 @@ class App extends Component {
               className="loginbtn"
               label={this.props.user.length ? "Logout" : "Login"}
               onTouchTap={this.props.user.length ? this.logout : this.login} />
+          </Row>
+          <Row>
+            <DialogModal
+              isVisble={isDialogVisible}
+              action={this.login}
+              className="loginbtn"
+            />
           </Row>
         </Container>
       </MuiThemeProvider>
