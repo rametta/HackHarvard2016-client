@@ -88,7 +88,13 @@ class App extends Component {
           toggleDrawer={() => this.toggleDrawer(stock)}/>;
       });
     } else {
-      return <div>Show 1 card here</div>
+      return (
+        <Row>
+          <div>
+            <img className="empty-screen" src="./../../style/img/empty-screen.png" />
+          </div>
+        </Row>
+      )
     }
   }
 
