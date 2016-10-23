@@ -72,7 +72,6 @@ class App extends Component {
   _renderStockCards() {
     console.log('ASDASDAS', this.props.user);
     if (this.props.user.length && this.props.user[0].username) {
-      console.log('user is here: ', this.props.user);
       if (!this.state.symbols) {
         return <div>No Cards to Show</div>
       }
