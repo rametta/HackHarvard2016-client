@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import ContentRemove from 'material-ui/svg-icons/content/remove';
+import ContentCreate from 'material-ui/svg-icons/content/create';
 import FlatButton from 'material-ui/FlatButton';
 
 // Custom Components
@@ -74,7 +74,7 @@ export default class SearchBar extends Component {
                     backgroundColor="#f44336"
                     onTouchTap={() => this.props.editCards()}
                     className="btn-remove-stock">
-                    <ContentRemove />
+                    <ContentCreate />
                   </FloatingActionButton>
                 </div>
               </Row>
