@@ -40,25 +40,20 @@ export default class SearchBar extends Component {
     }
 
     //Check whether input text is proper length to search stock symbol
-    validate() {
-      if (this.state.input.length > 5 || this.state.input.length < 1) {
+    validate(symbol) {
+      if (symbol.length > 5 || symbol.length < 1) {
         return false;
       }
       return true;
     }
-
-    onInputChange = ev => {
-      ev.persist();
-      this.setState({ input: ev.target.value }, function() {
-        if (ev.keyCode === 13) {
-          this.getStockData();
-        }
-      });
+  
+    onInputChange = input => {
+      this.getStockData(input);
     };
 
-    getStockData() {
-      if(this.validate()){
-        this.props.addCard(this.state.input);
+    getStockData(symbol) {
+      if(this.validate(symbol)){
+        this.props.addCard(symbol);
         this.setState({ errorText: "", input: "" });
         return;
       }
@@ -77,8 +72,7 @@ export default class SearchBar extends Component {
                       fullWidth
                       floatingLabelText={this.state.labelText}
                       errorText={this.state.errorText}
-                      onChange={this.onInputChange}
-                      onKeyUp={this.onInputChange}
+                      onNewRequest={this.onInputChange}
                       value={this.state.input}
                       floatingLabelFixed={false}
                       filter={AutoComplete.fuzzyFilter}
