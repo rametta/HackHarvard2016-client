@@ -8,7 +8,7 @@ export default class DialogModal extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { open: false };
+    this.state = { open: false, username: '', password: '' };
 
     this.handleClose = this.handleClose.bind(this);
     this.onTouchTap = this.onTouchTap.bind(this);
@@ -27,10 +27,18 @@ export default class DialogModal extends React.Component {
     this.setState({open: false});
   };
 
+  onUsernameChange(ev) {
+    this.setState({username: ev.target.value});
+  };
+
+  onPasswordChange(ev) {
+    this.setState({password: ev.target.value});
+  };
+
   componentWillReceiveProps(nextProps) {
     console.log('nextProps: ', nextProps);
     // set modal from here
-  }
+  };
 
   render() {
     const actions = [
@@ -58,9 +66,13 @@ export default class DialogModal extends React.Component {
           onRequestClose={this.handleClose}
         >
           <TextField
+            onChange={ev => this.onUsernameChange(ev)}
+            value={this.state.username}
             hintText="Username"
           />
           <TextField
+            onChange={ev => this.onPasswordChange(ev)}
+            value={this.state.password}
             type="password"
             hintText="Password"
           />
