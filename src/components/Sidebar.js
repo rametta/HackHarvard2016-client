@@ -26,7 +26,7 @@ export default class Sidebar extends Component {
     return (
       <Drawer width={400} openSecondary={false} open={this.props.open} >
         <AppBar
-          title={"drawer title"}
+          title={"Recent Tweets"}
           iconElementLeft = {
             <IconButton onTouchTap={this.props.toggleDrawer} >
               <NavigationClose/>

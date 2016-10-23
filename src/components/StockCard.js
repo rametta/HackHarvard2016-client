@@ -135,6 +135,10 @@ findSymbolImg(symbol){
     return prepend + (Math.floor(Math.random() * 6) + 1) + "%";
   }
 
+  getColor() {
+    return Math.floor(Math.random() * 6) + 1 > 3 ? "green" : "red";
+  }
+
   render() {
     const symbol = `$${this.props.data.quotes[0].Symbol.toUpperCase()}`;
     const label = `Sentiment: ${this.props.data.sentiment.toFixed(2)}`;
@@ -163,7 +167,7 @@ findSymbolImg(symbol){
             </CardSection>
 
             <CardSection borders>
-              <KPI icon={"green"} label={label} value={close} />
+              <KPI icon={this.getColor()} label={label} value={close} />
             </CardSection>
 
             <CardSection>
