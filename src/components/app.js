@@ -47,14 +47,14 @@ class App extends Component {
 
       console.log('symbol: ' + symbol);
 
-      /*axios.get(BASE_URL)
+      axios.get(BASE_URL)
       .then(function (response) {
         console.log(response);
-        this.setState({symbols: this.state.symbols.concat(symbol)});
+        //this.setState({symbols: this.state.symbols.concat(symbol)});
       })
       .catch(function (error) {
         console.log(error);
-      });*/
+      });
 
       this.setState({symbols: this.state.symbols.concat(symbol)});
   }
