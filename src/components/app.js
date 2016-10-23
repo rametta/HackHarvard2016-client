@@ -71,7 +71,7 @@ class App extends Component {
   _renderStockCards() {
     if (this.props.user.length && this.props.user[0].username) {
       console.log('we made it', this.state.data);
-      return this.state.data.map((stock, i, arr) => {
+      return this.state.data.map((stock, i) => {
         return <StockCard
           removeCard={stock => this.removeCard(stock)}
           editCard={this.state.editCards}
@@ -84,9 +84,6 @@ class App extends Component {
       return <div>Show 1 card here</div>
     }
   }
-
-
-
 
   editCards(){
     this.setState({editCards: !this.state.editCards})

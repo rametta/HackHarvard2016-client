@@ -41,7 +41,7 @@ export default class DialogModal extends React.Component {
   login() {
     const { username, password } = this.state;
     console.log('username: ', username);
-    // this.props.login({username, password}); // DO NOT DELETE
+    //this.props.login({username, password});
     this.setState({ username: '', password: '' });
   }
 

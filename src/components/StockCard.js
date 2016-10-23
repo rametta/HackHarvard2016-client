@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import { ToolbarSeparator } from 'material-ui/Toolbar';
 import RaisedButton from 'material-ui/RaisedButton';
+import tickers from '../tickerSymbols';
 
 // Chart Components
 import Chart from 'chart.js';
@@ -14,11 +15,12 @@ import Row from './common/Row';
 import CardSection from './CardSection';
 import KPI from './KPI';
 
-const lineChartOptions = {
-  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+let LINE_CHART_OPTIONS = {
+  labels: [],
   datasets: [
     {
-      label: '$AAPL',
+      label: '',
+      data: [],
       fill: false,
       lineTension: 0.1,
       backgroundColor: 'rgba(75,192,192,0.4)',
@@ -36,7 +38,6 @@ const lineChartOptions = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [65, 59, 80, 81, 56, 55, 40]
     }
   ]
 };
@@ -46,8 +47,24 @@ export default class StockCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      labels: [],
+      data: [],
+      title: "",
       expanded: false
     };
+  }
+
+  componentDidMount() {
+    const { quotes } = this.props.data;
+    let labels = [];
+    let data = [];
+
+    quotes.forEach(quote => {
+      labels.push(quote.Date);
+      data.push(parseFloat(quote.Close));
+    });
+
+    this.setState({ labels, data, title: quotes[0].Symbol });
   }
 
   handleExpandChange = expanded => {
@@ -71,6 +88,23 @@ export default class StockCard extends Component {
     this.props.toggleDrawer(this.props.id);
   }
 
+findSymbolImg(symbol){
+    //iterate through the JSON obejct
+    console.log(tickers.module.length);
+    for(var i = 0; i < tickers.module.length; i++)
+    {
+      //console.log("Hello", tickers.module);
+      //if I find the symbol and the image property is defined
+      //console.log(tickers.module[i].Symbol, symbol);
+      if("$" + tickers.module[i].Symbol == symbol)
+      {
+        //return the url 
+        return tickers.module[i].Image;
+      }
+    }
+    return "apple.png";
+  }
+
   renderButton() {
     const id = this.props.id;
     if(this.props.editCard){
@@ -81,6 +115,13 @@ export default class StockCard extends Component {
                 backgroundColor="#f44336"
                 onTouchTap={id => this.props.removeCard(id)} />);
     }
+  }
+
+  getChartOptions() {
+    LINE_CHART_OPTIONS.labels = this.state.labels;
+    LINE_CHART_OPTIONS.datasets[0].data = this.state.data;
+    LINE_CHART_OPTIONS.datasets[0].label = this.state.title;
+    return LINE_CHART_OPTIONS;
   }
 
   render() {
@@ -94,7 +135,7 @@ export default class StockCard extends Component {
 
         <CardHeader
           title={symbol}
-          avatar="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/2000px-Apple_logo_black.svg.png"
+          avatar={"../../style/img/stock/" + this.findSymbolImg(symbol)}
           actAsExpander
           showExpandableButton
         />
@@ -111,7 +152,7 @@ export default class StockCard extends Component {
             </CardSection>
 
             <CardSection>
-              <Line data={lineChartOptions} />
+              <Line data={this.getChartOptions()}/>
             </CardSection>
 
           </Row>
