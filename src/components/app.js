@@ -68,7 +68,6 @@ class App extends Component {
 
   _setData(data) {
     this.setState({ data: this.state.data.concat(data) });
-    console.log(this.state);
   }
 
   _renderStockCards() {
@@ -109,8 +108,6 @@ class App extends Component {
   }
 
   render() {
-    //console.log('user:!!', this.props.user);
-    //console.log(this.state);
     const { isDialogVisible } = this.state;
 
     return (

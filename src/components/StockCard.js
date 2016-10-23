@@ -84,7 +84,7 @@ export default class StockCard extends Component {
 
   render() {
     const symbol = `$${this.props.data.quotes[0].Symbol.toUpperCase()}`;
-    const label = `Sentiment: ${this.props.data.sentiment}`;
+    const label = `Sentiment: ${this.props.data.sentiment.toFixed(2)}`;
     return (
       <Card
         expanded={this.state.expanded}

@@ -13,14 +13,15 @@ import Tweet from './Tweet'
 export default class Sidebar extends Component {
 
   _renderTweets() {
-    /*console.log(this.props.data);
-    return this.props.data.data.tweets.map((tweet, i) => {
-      return <Tweet data={tweet} key={i} />;
-    });*/
+    if(this.props.open){
+      console.log(this.props.data.data.data);
+      return this.props.data.data.tweets.map((tweet, i) => {
+        return <Tweet data={tweet} key={i} />;
+      });
+    }
   }
 
   render() {
-    console.log(this.props);
     //const drawerTitle = `Tweets for $${this.props.data.quotes[0].Symbol.toUpperCase()}`;
     return (
       <Drawer width={400} openSecondary={false} open={this.props.open} >
