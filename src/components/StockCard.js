@@ -14,11 +14,12 @@ import Row from './common/Row';
 import CardSection from './CardSection';
 import KPI from './KPI';
 
-const lineChartOptions = {
-  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+let LINE_CHART_OPTIONS = {
+  labels: [],
   datasets: [
     {
-      label: '$AAPL',
+      label: '',
+      data: [],
       fill: false,
       lineTension: 0.1,
       backgroundColor: 'rgba(75,192,192,0.4)',
@@ -36,7 +37,6 @@ const lineChartOptions = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [65, 59, 80, 81, 56, 55, 40]
     }
   ]
 };
@@ -46,8 +46,24 @@ export default class StockCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      labels: [],
+      data: [],
+      title: "",
       expanded: false
     };
+  }
+
+  componentDidMount() {
+    const { quotes } = this.props.data;
+    let labels = [];
+    let data = [];
+
+    quotes.forEach(quote => {
+      labels.push(quote.Date);
+      data.push(parseFloat(quote.Close));
+    });
+
+    this.setState({ labels, data, title: quotes[0].Symbol });
   }
 
   handleExpandChange = expanded => {
@@ -82,6 +98,13 @@ export default class StockCard extends Component {
     }
   }
 
+  getChartOptions() {
+    LINE_CHART_OPTIONS.labels = this.state.labels;
+    LINE_CHART_OPTIONS.datasets[0].data = this.state.data;
+    LINE_CHART_OPTIONS.datasets[0].label = this.state.title;
+    return LINE_CHART_OPTIONS;
+  }
+
   render() {
     const symbol = `$${this.props.data.quotes[0].Symbol.toUpperCase()}`;
     const label = `Sentiment: ${this.props.data.sentiment.toFixed(2)}`;
@@ -110,7 +133,7 @@ export default class StockCard extends Component {
             </CardSection>
 
             <CardSection>
-              <Line data={lineChartOptions} />
+              <Line data={this.getChartOptions()}/>
             </CardSection>
 
           </Row>
