@@ -40,10 +40,6 @@ export default class DialogModal extends React.Component {
     // set modal from here
   };
 
-  onUsernameChange(ev) {
-    this.setState({ username: ev.target.value });
-  }
-
   render() {
     const actions = [
       <FlatButton
@@ -77,7 +73,6 @@ export default class DialogModal extends React.Component {
             onChange={ev => this.onUsernameChange(ev)}
             value={this.state.username}
             hintText="Username"
-            onChange={() => this.onUsernameChange()}
           />
           <TextField
             onChange={ev => this.onPasswordChange(ev)}
