@@ -14,8 +14,8 @@ export default class Sidebar extends Component {
 
   _renderTweets() {
     if(this.props.open){
-      console.log(this.props.data.data.data);
-      return this.props.data.data.tweets.map((tweet, i) => {
+      console.log(this.props.data);
+      return this.props.data.map((tweet, i) => {
         return <Tweet data={tweet} key={i} />;
       });
     }
