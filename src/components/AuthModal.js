@@ -12,10 +12,12 @@ export default class DialogModal extends React.Component {
 
     this.handleClose = this.handleClose.bind(this);
     this.onTouchTap = this.onTouchTap.bind(this);
+    this.login = this.login.bind(this);
+    this.logout= this.logout.bind(this);
   }
 
   onTouchTap() {
-    this.props.action();
+    this.login();
     this.handleClose();
   }
 
@@ -35,10 +37,17 @@ export default class DialogModal extends React.Component {
     this.setState({password: ev.target.value});
   };
 
-  componentWillReceiveProps(nextProps) {
-    console.log('nextProps: ', nextProps);
-    // set modal from here
-  };
+
+  login() {
+    const { username, password } = this.state;
+    console.log('username: ', username);
+    this.props.login({username, password});
+    this.setState({ username: '', password: '' });
+  }
+
+  logout() {
+    this.props.logout();
+  }
 
   render() {
     const actions = [
@@ -61,7 +70,7 @@ export default class DialogModal extends React.Component {
           primary
           className="loginbtn"
           label={this.props.user.length ? "Logout" : "Login"}
-          onTouchTap={this.props.user.length ? this.props.action : this.handleOpen} />
+          onTouchTap={this.props.user.length ? this.props.logout : this.handleOpen} />
         <Dialog
           title="Sign in to save your portfolio!"
           actions={actions}

@@ -48,7 +48,6 @@ export default class SearchBar extends Component {
     }
 
     onInputChange = ev => {
-      console.log('autocomplete!!' + ev.keyCode + ' ' + ev.target.value);
       ev.persist();
       this.setState({ input: ev.target.value }, function() {
         if (ev.keyCode === 13) {

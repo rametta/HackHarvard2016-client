@@ -32,9 +32,6 @@ class App extends Component {
         editCards: false,
         isDialogVisible: true,
       };
-
-      this.login = this.login.bind(this);
-      this.logout = this.logout.bind(this);
   }
 
   toggleDrawer = symbol => this.setState({
@@ -60,23 +57,21 @@ class App extends Component {
   }
 
   _renderStockCards() {
-    return this.state.symbols.map(symbol => {
-      return <StockCard
-                removeCard={ticker => this.removeCard(symbol)}
-                editCard={this.state.editCards}
-                key={symbol}
-                symbol={symbol}
-                toggleDrawer={symbol => this.toggleDrawer(symbol)} />;
-    });
-  }
+    console.log('ASDASDAS',this.props.user);
+    if(this.props.user.length && this.props.user[0].username) {
+      console.log('user is here: ', this.props.user);
+      return this.state.symbols.map(symbol => {
+        return <StockCard
+          removeCard={ticker => this.removeCard(symbol)}
+          editCard={this.state.editCards}
+          key={symbol}
+          symbol={symbol}
+          toggleDrawer={symbol => this.toggleDrawer(symbol)} />;
+      });
+    } else {
+      return <div>Show 1 card here</div>
+    }
 
-  login() {
-    this.props.login({username: 'john', password: '123'});
-    //this.props.test();
-  }
-
-  logout() {
-    this.props.logout();
   }
 
   fetchData(symbol) {
@@ -122,8 +117,9 @@ class App extends Component {
           <Row>
             <DialogModal
               isVisble={isDialogVisible}
-              action={this.props.user.length ? this.logout : this.login}
               user={this.props.user}
+              login={this.props.login}
+              logout={this.props.logout}
             />
           </Row>
         </Container>
