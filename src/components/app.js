@@ -5,6 +5,8 @@ import axios from 'axios';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
+import CircularProgress from 'material-ui/CircularProgress';
+
 
 // Custom Components
 import Container from './common/Container';
@@ -28,9 +30,11 @@ class App extends Component {
         data: [],
         editCards: false,
         isDialogVisible: true,
+        isLoadingStock: false,
       };
 
       this.addCard = this.addCard.bind(this);
+      this.renderLoading = this.renderLoading.bind(this);
   }
 
   toggleDrawer = stock => {
@@ -53,14 +57,17 @@ class App extends Component {
       };
 
       const me = this;
-
-      axios.get(URL, config)
-      .then(function(response) {
-        console.log(response.data);
-        me._setData(response.data);
-      })
-      .catch(function(error){
-        console.log(error)  ;
+      this.setState({isLoadingStock: true}, function() {
+        axios.get(URL, config)
+        .then((response) => {
+          console.log(response.data);
+          me._setData(response.data);
+          this.setState({isLoadingStock: false});
+        })
+        .catch((error) =>{
+          console.log(error)  ;
+          this.setState({isLoadingStock: false});
+        });
       });
   }
 
@@ -89,6 +96,20 @@ class App extends Component {
     this.setState({editCards: !this.state.editCards})
   }
 
+  renderLoading() {
+    console.log('....',this.state.isLoadingStock);
+    if (this.state.isLoadingStock == true) {
+      return (
+        <Row>
+          <div className="alignCenter">
+            <CircularProgress />
+          </div>
+        </Row>
+      );
+    }
+    return <div></div>
+  };
+
   removeCard(stock) {
     var updatedList = this.state.data.filter(function(elem, index) {
       console.log(elem.sentiment);
@@ -102,6 +123,7 @@ class App extends Component {
 
   render() {
     const { isDialogVisible } = this.state;
+    const shouldLoad = this.renderLoading();
     console.log('this.state.data', this.state.data);
     return (
       <MuiThemeProvider>
@@ -122,6 +144,7 @@ class App extends Component {
               {this._renderStockCards()}
             </div>
           </Row>
+          {shouldLoad}
           <Row>
             <DialogModal
               isVisble={isDialogVisible}
