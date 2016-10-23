@@ -46,13 +46,12 @@ export default class StockCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sentiment: 64,
       expanded: false
     };
   }
 
-  handleExpandChange = (expanded) => {
-    this.setState({expanded: expanded});
+  handleExpandChange = expanded => {
+    this.setState({ expanded });
   };
 
   handleToggle = (event, toggle) => {
@@ -68,20 +67,24 @@ export default class StockCard extends Component {
   }
 
   toggleDrawer = () => {
-    this.props.toggleDrawer(this.props.symbol);
+    this.props.toggleDrawer(this.props.id);
   }
 
   renderButton() {
-    const symbol = this.props.symbol;
+    const id = this.props.id;
     if(this.props.editCard){
-      return( <RaisedButton labelStyle={{color: '#ffffff'}} className="btn-delete" label="Delete Card" backgroundColor="#f44336"
-      onTouchTap={symbol => this.props.removeCard(symbol)} />);
+      return( <RaisedButton
+                labelStyle={{color: '#ffffff'}}
+                className="btn-delete"
+                label="Delete Card"
+                backgroundColor="#f44336"
+                onTouchTap={id => this.props.removeCard(id)} />);
     }
   }
 
   render() {
-    const symbol = `$${this.props.symbol.toUpperCase()}`;
-    const label = `Sentiment: ${this.state.sentiment}`;
+    const symbol = `$${this.props.data.quotes[0].Symbol.toUpperCase()}`;
+    const label = `Sentiment: ${this.props.data.sentiment}`;
     return (
       <Card
         expanded={this.state.expanded}

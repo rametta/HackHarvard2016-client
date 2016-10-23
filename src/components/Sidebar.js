@@ -13,17 +13,19 @@ import Tweet from './Tweet'
 export default class Sidebar extends Component {
 
   _renderTweets() {
-    return this.props.tweets.module.tweets.map((tweet, i) => {
+    /*console.log(this.props.data);
+    return this.props.data.data.tweets.map((tweet, i) => {
       return <Tweet data={tweet} key={i} />;
-    });
+    });*/
   }
 
   render() {
-    const drawerTitle = `Tweets for $${this.props.symbol}`;
+    console.log(this.props);
+    //const drawerTitle = `Tweets for $${this.props.data.quotes[0].Symbol.toUpperCase()}`;
     return (
       <Drawer width={400} openSecondary={false} open={this.props.open} >
         <AppBar
-          title={drawerTitle}
+          title={"drawer title"}
           iconElementLeft = {
             <IconButton onTouchTap={this.props.toggleDrawer} >
               <NavigationClose/>

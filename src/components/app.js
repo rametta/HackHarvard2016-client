@@ -27,38 +27,51 @@ class App extends Component {
       injectTapEventPlugin();
       this.state = {
         drawer: false,
-        drawerSymbol: "AAPL",
-        symbols: ["AAPL"],
+        drawerSymbolID: -1,
+        data: [],
         editCards: false,
         isDialogVisible: true,
       };
+
+      this.addCard = this.addCard.bind(this);
   }
 
-  toggleDrawer = symbol => this.setState({
-    drawerSymbol: symbol,
+  toggleDrawer = id => this.setState({
+    drawerSymbolID: id,
     drawer: !this.state.drawer
   });
 
-  addCard(symbol) {
-      const BASE_URL = `http://52.44.145.202:3000/search/tweets?q=${symbol}%20OR%20%24${symbol}&count=15&lang=en`;
+  addCard = symbol => {
+      //const URL = `http://52.44.145.202:3001/search/tweets?q=${symbol}%20OR%20%24${symbol}&count=15&lang=en`;
+      const URL = `http://52.44.145.202:3001/search/tweets?q=${symbol}`;
 
-      console.log('symbol: ' + symbol);
+      const config = {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      };
 
-      axios.get(BASE_URL)
-      .then(function (response) {
-        console.log(response);
-        //this.setState({symbols: this.state.symbols.concat(symbol)});
+      const me = this;
+
+      axios.get(URL, config)
+      .then(function(response) {
+        console.log(response.data);
+        me._setData(response.data);
       })
-      .catch(function (error) {
-        console.log(error);
+      .catch(function(error){
+        console.log(error)  ;
       });
+  }
 
-      this.setState({symbols: this.state.symbols.concat(symbol)});
+  _setData(data) {
+    this.setState({ data: this.state.data.concat(data) });
+    console.log(this.state);
   }
 
   _renderStockCards() {
-    console.log('ASDASDAS',this.props.user);
-    if(this.props.user.length && this.props.user[0].username) {
+    console.log('ASDASDAS', this.props.user);
+    if (this.props.user.length && this.props.user[0].username) {
       console.log('user is here: ', this.props.user);
       return this.state.symbols.map(symbol => {
         return <StockCard
@@ -66,12 +79,11 @@ class App extends Component {
           editCard={this.state.editCards}
           key={symbol}
           symbol={symbol}
-          toggleDrawer={symbol => this.toggleDrawer(symbol)} />;
+          toggleDrawer={symbol => this.toggleDrawer(symbol)}/>;
       });
     } else {
       return <div>Show 1 card here</div>
     }
-
   }
 
   fetchData(symbol) {
@@ -91,7 +103,8 @@ class App extends Component {
   }
 
   render() {
-    console.log('user:!!', this.props.user);
+    //console.log('user:!!', this.props.user);
+    //console.log(this.state);
     const { isDialogVisible } = this.state;
 
     return (
@@ -103,8 +116,7 @@ class App extends Component {
                         editCards={() => this.editCards()}
               />
               <Sidebar
-                tweets={tweets}
-                symbol={this.state.drawerSymbol}
+                data={this.state}
                 open={this.state.drawer}
                 toggleDrawer={this.toggleDrawer} />
             </div>
