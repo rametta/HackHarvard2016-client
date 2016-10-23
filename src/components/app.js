@@ -73,6 +73,10 @@ class App extends Component {
     console.log('ASDASDAS', this.props.user);
     if (this.props.user.length && this.props.user[0].username) {
       console.log('user is here: ', this.props.user);
+      if (!this.state.symbols) {
+        return <div>No Cards to Show</div>
+      }
+
       return this.state.symbols.map(symbol => {
         return <StockCard
           removeCard={ticker => this.removeCard(symbol)}
