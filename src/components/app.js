@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 // Material Design Components
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -42,8 +43,20 @@ class App extends Component {
   });
 
   addCard(symbol) {
-      this.props.getStockHistorical(symbol,'2016-01-01', '2016-09-09');
-      this.setState({symbols: this.state.symbols.concat(symbol)});
+      const BASE_URL = `http://52.44.145.202:3000/search/tweets?q=${symbol}%20OR%20%24${symbol}&count=15&lang=en`;
+
+      console.log(symbol);
+
+      /*axios.get(BASE_URL)
+      .then(function (response) {
+        console.log(response);
+        this.setState({symbols: this.state.symbols.concat(symbol)});
+      })
+      .catch(function (error) {
+        console.log(error);
+      });*/
+
+
   }
 
   _renderStockCards() {
