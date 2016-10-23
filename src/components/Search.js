@@ -60,7 +60,6 @@ export default class SearchBar extends Component {
     }
 
     render() {
-      console.log(this.state.input);
       return (
         <div className="SearchBar" >
           <Container fluid >
