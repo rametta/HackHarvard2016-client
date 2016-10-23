@@ -27,46 +27,59 @@ class App extends Component {
       injectTapEventPlugin();
       this.state = {
         drawer: false,
-        drawerSymbol: "AAPL",
-        symbols: ["AAPL"],
+        drawerSymbolID: -1,
+        data: [],
         editCards: false,
         isDialogVisible: true,
       };
 
       this.login = this.login.bind(this);
       this.logout = this.logout.bind(this);
+      this.addCard = this.addCard.bind(this);
   }
 
-  toggleDrawer = symbol => this.setState({
-    drawerSymbol: symbol,
+  toggleDrawer = id => this.setState({
+    drawerSymbolID: id,
     drawer: !this.state.drawer
   });
 
-  addCard(symbol) {
-      const BASE_URL = `http://52.44.145.202:3000/search/tweets?q=${symbol}%20OR%20%24${symbol}&count=15&lang=en`;
+  addCard = symbol => {
+      //const URL = `http://52.44.145.202:3001/search/tweets?q=${symbol}%20OR%20%24${symbol}&count=15&lang=en`;
+      const URL = `http://52.44.145.202:3001/search/tweets?q=${symbol}`;
 
-      console.log('symbol: ' + symbol);
+      const config = {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      };
 
-      axios.get(BASE_URL)
-      .then(function (response) {
-        console.log(response);
-        //this.setState({symbols: this.state.symbols.concat(symbol)});
+      const me = this;
+
+      axios.get(URL, config)
+      .then(function(response) {
+        console.log(response.data);
+        me._setData(response.data);
       })
-      .catch(function (error) {
-        console.log(error);
+      .catch(function(error){
+        console.log(error)  ;
       });
+  }
 
-      this.setState({symbols: this.state.symbols.concat(symbol)});
+  _setData(data) {
+    this.setState({ data: this.state.data.concat(data) });
+    console.log(this.state);
   }
 
   _renderStockCards() {
-    return this.state.symbols.map(symbol => {
+    return this.state.data.map((stock,i) => {
       return <StockCard
-                removeCard={ticker => this.removeCard(symbol)}
+                removeCard={stock => this.removeCard(stock)}
                 editCard={this.state.editCards}
-                key={symbol}
-                symbol={symbol}
-                toggleDrawer={symbol => this.toggleDrawer(symbol)} />;
+                key={i}
+                id={i}
+                data={stock}
+                toggleDrawer={stock => this.toggleDrawer(stock)} />;
     });
   }
 
@@ -96,7 +109,8 @@ class App extends Component {
   }
 
   render() {
-    console.log('user:!!', this.props.user);
+    //console.log('user:!!', this.props.user);
+    //console.log(this.state);
     const { isDialogVisible } = this.state;
 
     return (
@@ -108,8 +122,7 @@ class App extends Component {
                         editCards={() => this.editCards()}
               />
               <Sidebar
-                tweets={tweets}
-                symbol={this.state.drawerSymbol}
+                data={this.state}
                 open={this.state.drawer}
                 toggleDrawer={this.toggleDrawer} />
             </div>
