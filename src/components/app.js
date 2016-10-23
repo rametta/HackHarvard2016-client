@@ -30,7 +30,6 @@ class App extends Component {
         editCards: false
       };
 
-
       this.login = this.login.bind(this);
       this.logout = this.logout.bind(this);
   }

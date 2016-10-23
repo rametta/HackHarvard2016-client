@@ -32,15 +32,14 @@
   font-size: 16px;
 }
 
-.btn-add-stock, .btn-remove-stock{
-  margin: 20px 0px 20px 0px;
+.btn-group {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .btn-remove-stock{
-  margin: 20px 0px 20px 10px;
+  margin-left: 10px;
 }
-
-
 
 .stock-card {
   font-family: 'circular';
