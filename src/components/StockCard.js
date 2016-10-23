@@ -60,8 +60,8 @@ export default class StockCard extends Component {
     let data = [];
 
     quotes.forEach(quote => {
-      labels.push(quote.Date);
-      data.push(parseFloat(quote.Close));
+      labels.unshift(quote.Date);
+      data.unshift(parseFloat(quote.Close));
     });
 
     let a = {};
