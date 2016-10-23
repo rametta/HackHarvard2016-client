@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import AutoComplete from 'material-ui/AutoComplete';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 
-import ContentAdd from 'material-ui/svg-icons/content/add';
 import FlatButton from 'material-ui/FlatButton';
 
 // Custom Components
@@ -81,11 +80,6 @@ export default class SearchBar extends Component {
                   </div>
                 <div className="col-xs-2" >
                   <div className="btn-group">
-                    <FloatingActionButton
-                      onTouchTap={() => this.getStockData()}>
-                      <ContentAdd />
-                    </FloatingActionButton>
-
                     <FloatingActionButton
                       backgroundColor="#f44336"
                       onTouchTap={() => this.props.editCards()}
