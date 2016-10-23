@@ -73,6 +73,9 @@ class App extends Component {
   }
 
   removeCard(ticker) {
+    var symbols = this.state.symbols;
+
+    symbols.
     console.log(ticker);
   }
 

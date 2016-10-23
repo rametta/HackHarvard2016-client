@@ -1461,7 +1461,7 @@ const tickers = [
     "Sector": "Technology",
     "Industry": "Computer Software: Programming, Data Processing",
     "Summary Quote": "http://www.nasdaq.com/symbol/goog",
-    "": ""
+    "Image": "Alphabet"
   },
   {
     "Symbol": "GOOGL",
@@ -1581,7 +1581,7 @@ const tickers = [
     "Sector": "Consumer Services",
     "Industry": "Catalog/Specialty Distribution",
     "Summary Quote": "http://www.nasdaq.com/symbol/amzn",
-    "": ""
+    "Image": "amazon.png"
   },
   {
     "Symbol": "AMBC",
@@ -1713,7 +1713,7 @@ const tickers = [
     "Sector": "Transportation",
     "Industry": "Air Freight/Delivery Services",
     "Summary Quote": "http://www.nasdaq.com/symbol/aal",
-    "": ""
+    "Image": "american airlines.png"
   },
   {
     "Symbol": "ACSF",
@@ -2313,7 +2313,7 @@ const tickers = [
     "Sector": "Technology",
     "Industry": "Computer Manufacturing",
     "Summary Quote": "http://www.nasdaq.com/symbol/aapl",
-    "": ""
+    "Image": "apple.png"
   },
   {
     "Symbol": "ARCI",
@@ -7425,7 +7425,7 @@ const tickers = [
     "Sector": "Technology",
     "Industry": "Computer Communications Equipment",
     "Summary Quote": "http://www.nasdaq.com/symbol/csco",
-    "": ""
+    "Image": "Cisco.png"
   },
   {
     "Symbol": "CTRN",
@@ -7749,7 +7749,7 @@ const tickers = [
     "Sector": "Consumer Non-Durables",
     "Industry": "Beverages (Production/Distribution)",
     "Summary Quote": "http://www.nasdaq.com/symbol/coke",
-    "": ""
+    "Image": "coca-cola.png"
   },
   {
     "Symbol": "CDXS",
@@ -8697,7 +8697,7 @@ const tickers = [
     "Sector": "Consumer Services",
     "Industry": "Department/Specialty Retail Stores",
     "Summary Quote": "http://www.nasdaq.com/symbol/cost",
-    "": ""
+    "Image": "costco.png"
   },
   {
     "Symbol": "CPAH",
@@ -11745,7 +11745,7 @@ const tickers = [
     "Sector": "Health Care",
     "Industry": "Medical/Nursing Services",
     "Summary Quote": "http://www.nasdaq.com/symbol/esrx",
-    "": ""
+    "Image": "express scripts.png"
   },
   {
     "Symbol": "XOG",
@@ -11829,7 +11829,7 @@ const tickers = [
     "Sector": "Technology",
     "Industry": "Computer Software: Programming, Data Processing",
     "Summary Quote": "http://www.nasdaq.com/symbol/fb",
-    "": ""
+    "Image": "facebook.png"
   },
   {
     "Symbol": "FRP",
@@ -14841,7 +14841,7 @@ const tickers = [
     "Sector": "Health Care",
     "Industry": "Biotechnology: Biological Products (No Diagnostic Substances)",
     "Summary Quote": "http://www.nasdaq.com/symbol/gild",
-    "": ""
+    "Image": "gilead sciences.png"
   },
   {
     "Symbol": "GBCI",
@@ -17937,7 +17937,7 @@ const tickers = [
     "Sector": "Technology",
     "Industry": "Semiconductors",
     "Summary Quote": "http://www.nasdaq.com/symbol/intc",
-    "": ""
+    "Image": "intel.png"
   },
   {
     "Symbol": "IQNT",
@@ -18201,7 +18201,7 @@ const tickers = [
     "Sector": "Finance",
     "Industry": "Investment Bankers/Brokers/Service",
     "Summary Quote": "http://www.nasdaq.com/symbol/intl",
-    "": ""
+    "Image": "intl fcstone.png"
   },
   {
     "Symbol": "ITCI",
@@ -22629,7 +22629,7 @@ const tickers = [
     "Sector": "Technology",
     "Industry": "Computer Software: Prepackaged Software",
     "Summary Quote": "http://www.nasdaq.com/symbol/msft",
-    "": ""
+    "Image": "microsoft.png"
   },
   {
     "Symbol": "MSTR",
@@ -23037,7 +23037,7 @@ const tickers = [
     "Sector": "Consumer Non-Durables",
     "Industry": "Packaged Foods",
     "Summary Quote": "http://www.nasdaq.com/symbol/mdlz",
-    "": ""
+    "Image": "mondelez.png"
   },
   {
     "Symbol": "MGI",
@@ -33201,7 +33201,7 @@ const tickers = [
     "Sector": "Capital Goods",
     "Industry": "Auto Manufacturing",
     "Summary Quote": "http://www.nasdaq.com/symbol/tsla",
-    "": ""
+    "Image": "tesla.png"
   },
   {
     "Symbol": "TESS",
@@ -34653,7 +34653,7 @@ const tickers = [
     "Sector": "Consumer Services",
     "Industry": "Television Services",
     "Summary Quote": "http://www.nasdaq.com/symbol/fox",
-    "": ""
+    "Image": "21st century fox.png"
   },
   {
     "Symbol": "FOXA",
@@ -36633,7 +36633,7 @@ const tickers = [
     "Sector": "Health Care",
     "Industry": "Medical/Nursing Services",
     "Summary Quote": "http://www.nasdaq.com/symbol/wba",
-    "": ""
+    "Image": "walgreens boots alliance.png"
   },
   {
     "Symbol": "WAFD",
@@ -37833,7 +37833,7 @@ const tickers = [
     "Sector": "Technology",
     "Industry": "EDP Services",
     "Summary Quote": "http://www.nasdaq.com/symbol/yhoo",
-    "": ""
+    "Image": "yahoo.png"
   },
   {
     "Symbol": "YNDX",

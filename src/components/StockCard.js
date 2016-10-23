@@ -76,7 +76,8 @@ export default class StockCard extends Component {
   renderButton() {
     const symbol = this.props.symbol;
     if(this.props.editCard){
-      return( <RaisedButton secondary label="Delete Card" onTouchTap={ticker => console.log(ticker)} />);
+      return( <RaisedButton label="Delete Card" backgroundColor="#f44336"
+      onTouchTap={symbol => this.props.removeCard(symbol)} />);
     }
   }
 
