@@ -15,33 +15,6 @@ import Row from './common/Row';
 import CardSection from './CardSection';
 import KPI from './KPI';
 
-let LINE_CHART_OPTIONS = {
-  labels: [],
-  datasets: [
-    {
-      label: '',
-      data: [],
-      fill: false,
-      lineTension: 0.1,
-      backgroundColor: 'rgba(75,192,192,0.4)',
-      borderColor: 'rgba(75,192,192,1)',
-      borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: 'rgba(75,192,192,1)',
-      pointBackgroundColor: '#fff',
-      pointBorderWidth: 1,
-      pointHoverRadius: 5,
-      pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-      pointHoverBorderColor: 'rgba(220,220,220,1)',
-      pointHoverBorderWidth: 2,
-      pointRadius: 1,
-      pointHitRadius: 10,
-    }
-  ]
-};
-
 export default class StockCard extends Component {
 
   constructor(props) {
@@ -51,7 +24,33 @@ export default class StockCard extends Component {
       data: [],
       title: "",
       expanded: false,
-      optionData: {}
+      optionData: {},
+      defaultOptions: {
+        labels: [],
+        datasets: [
+          {
+            label: '',
+            data: [],
+            fill: false,
+            lineTension: 0.1,
+            backgroundColor: 'rgba(75,192,192,0.4)',
+            borderColor: 'rgba(75,192,192,1)',
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: 'rgba(75,192,192,1)',
+            pointBackgroundColor: '#fff',
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+            pointHoverBorderColor: 'rgba(220,220,220,1)',
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+          }
+        ]
+      }
     };
   }
 
@@ -65,12 +64,18 @@ export default class StockCard extends Component {
       data.push(parseFloat(quote.Close));
     });
 
-    this.setState({ labels, data, title: quotes[0].Symbol });
-    this.setState({optionData: this.getChartOptions()});
+    let a = {};
+    Object.assign(a, this.state.defaultOptions);
+    a.labels = labels;
+    a.datasets[0].data = data;
+    a.datasets[0].label = quotes[0].Symbol;
+
+    this.setState({optionData: a});
   }
 
   componentDidMount() {
-
+    this.getROI();
+    this.getColor();
   }
 
   handleExpandChange = expanded => {
@@ -94,22 +99,18 @@ export default class StockCard extends Component {
     this.props.toggleDrawer(this.props.id);
   }
 
-findSymbolImg(symbol){
-    //iterate through the JSON obejct
-    console.log(tickers.module.length);
-    for(var i = 0; i < tickers.module.length; i++)
-    {
-      //console.log("Hello", tickers.module);
-      //if I find the symbol and the image property is defined
-      //console.log(tickers.module[i].Symbol, symbol);
-      if("$" + tickers.module[i].Symbol == symbol)
-      {
-        //return the url
-        return tickers.module[i].Image;
+  findSymbolImg = () => {
+      const symbol = this.props.data.quotes[0].Symbol.trim();
+      let url = tickers.module.find(ticker => {
+        return symbol == ticker.Symbol.trim();
+      });
+      url = url.Image;
+
+      if(typeof url !== "undefined"){
+        return url
       }
+      return "default.png";
     }
-    return "apple.png";
-  }
 
   renderButton() {
     const id = this.props.id;
@@ -123,29 +124,23 @@ findSymbolImg(symbol){
     }
   }
 
-  getChartOptions() {
-    LINE_CHART_OPTIONS.labels = this.state.labels;
-    LINE_CHART_OPTIONS.datasets[0].data = this.state.data;
-    LINE_CHART_OPTIONS.datasets[0].label = this.state.title;
-    return LINE_CHART_OPTIONS;
-  }
-
   getROI() {
-    const prepend = this.props.data.sentiment > 0 ? "+" : "-";
-    return prepend + (Math.floor(Math.random() * 6) + 1) + "%";
+    let roi = this.props.data.sentiment > 0 ? "+" : "-";
+    roi += (Math.floor(Math.random() * 6) + 1) + "%";
+    this.setState({ roi });
   }
 
   getColor() {
-    return Math.floor(Math.random() * 6) + 1 > 3 ? "green" : "red";
+    const color = Math.floor(Math.random() * 6) + 1 > 3 ? "green" : "red";
+    this.setState({ color });
   }
 
   render() {
     const symbol = `$${this.props.data.quotes[0].Symbol.toUpperCase()}`;
     const label = `Sentiment: ${this.props.data.sentiment.toFixed(2)}`;
     const close = parseFloat(this.props.data.quotes[0].Close).toFixed(1);
-    if(!this.state.optionData) {
-      return <div>Loading...</div>
-    }
+    const photo = this.findSymbolImg();
+
     return (
       <Card
         expanded={this.state.expanded}
@@ -154,7 +149,7 @@ findSymbolImg(symbol){
 
         <CardHeader
           title={symbol}
-          avatar={"../../style/img/stock/" + this.findSymbolImg(symbol)}
+          avatar={`../../style/img/stock/${photo}`}
           actAsExpander
           showExpandableButton
         />
@@ -163,15 +158,15 @@ findSymbolImg(symbol){
           <Row>
 
             <CardSection>
-              <KPI label="Potential ROI" value={this.getROI()} />
+              <KPI label="Potential ROI" value={this.state.roi} />
             </CardSection>
 
             <CardSection borders>
-              <KPI icon={this.getColor()} label={label} value={close} />
+              <KPI icon={this.state.color} label={label} value={close} />
             </CardSection>
 
             <CardSection>
-              <Line data={this.getChartOptions()}/>
+              <Line data={this.state.optionData}/>
             </CardSection>
 
           </Row>
