@@ -124,12 +124,12 @@ export default class StockCard extends Component {
 
         <CardActions>
           <RaisedButton
+            label="Live Tweets"
+            onTouchTap={this.toggleDrawer} />
+          <RaisedButton
             primary
             label={this.state.expanded ? "View Less" : "View More"}
             onTouchTap={this.toggleCardExpand} />
-          <RaisedButton
-            label="Live Tweets"
-            onTouchTap={this.toggleDrawer} />
           {this.renderButton()}
         </CardActions>
 
