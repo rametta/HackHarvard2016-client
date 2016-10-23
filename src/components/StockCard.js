@@ -50,11 +50,12 @@ export default class StockCard extends Component {
       labels: [],
       data: [],
       title: "",
-      expanded: false
+      expanded: false,
+      optionData: {}
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const { quotes } = this.props.data;
     let labels = [];
     let data = [];
@@ -65,6 +66,11 @@ export default class StockCard extends Component {
     });
 
     this.setState({ labels, data, title: quotes[0].Symbol });
+    this.setState({optionData: this.getChartOptions()});
+  }
+
+  componentDidMount() {
+
   }
 
   handleExpandChange = expanded => {
@@ -97,7 +103,7 @@ findSymbolImg(symbol){
       //console.log(tickers.module[i].Symbol, symbol);
       if("$" + tickers.module[i].Symbol == symbol)
       {
-        //return the url 
+        //return the url
         return tickers.module[i].Image;
       }
     }
@@ -126,6 +132,10 @@ findSymbolImg(symbol){
   render() {
     const symbol = `$${this.props.data.quotes[0].Symbol.toUpperCase()}`;
     const label = `Sentiment: ${this.props.data.sentiment.toFixed(2)}`;
+    const close = parseFloat(this.props.data.quotes[0].Close).toFixed(1);
+    if(!this.state.optionData) {
+      return <div>Loading...</div>
+    }
     return (
       <Card
         expanded={this.state.expanded}
@@ -147,21 +157,14 @@ findSymbolImg(symbol){
             </CardSection>
 
             <CardSection borders>
-              <KPI icon={"green"} label={label} value={"2"} />
+              <KPI icon={"green"} label={label} value={close} />
             </CardSection>
 
             <CardSection>
-              <Line data={this.getChartOptions()}/>
+              <Line data={this.state.optionData}/>
             </CardSection>
 
           </Row>
-        </CardText>
-
-        <CardText expandable className="circular">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-          Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-          Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
         </CardText>
 
         <CardActions>
@@ -170,10 +173,6 @@ findSymbolImg(symbol){
             backgroundColor="#29B6F6"
             labelColor="#ffffff"
             onTouchTap={this.toggleDrawer} />
-          <RaisedButton
-            primary
-            label={this.state.expanded ? "View Less" : "View More"}
-            onTouchTap={this.toggleCardExpand} />
           {this.renderButton()}
         </CardActions>
 
