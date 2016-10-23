@@ -45,7 +45,7 @@ export default class SearchBar extends Component {
       }
       return true;
     }
-
+  
     onInputChange = input => {
       this.getStockData(input);
     };
