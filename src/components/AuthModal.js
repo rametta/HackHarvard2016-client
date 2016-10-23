@@ -32,6 +32,10 @@ export default class DialogModal extends React.Component {
     // set modal from here
   }
 
+  onUsernameChange(ev) {
+    this.setState({ username: ev.target.value });
+  }
+
   render() {
     const actions = [
       <FlatButton
@@ -49,7 +53,11 @@ export default class DialogModal extends React.Component {
 
     return (
       <div>
-        <RaisedButton primary className="loginbtn" label="Login" onTouchTap={this.handleOpen} />
+        <RaisedButton
+          primary
+          className="loginbtn"
+          label={this.props.user.length ? "Logout" : "Login"}
+          onTouchTap={this.props.user.length ? this.props.action : this.handleOpen} />
         <Dialog
           title="Sign in to save your portfolio!"
           actions={actions}
@@ -59,6 +67,7 @@ export default class DialogModal extends React.Component {
         >
           <TextField
             hintText="Username"
+            onChange={() => this.onUsernameChange()}
           />
           <TextField
             type="password"

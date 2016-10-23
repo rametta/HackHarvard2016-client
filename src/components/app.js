@@ -109,7 +109,8 @@ class App extends Component {
           <Row>
             <DialogModal
               isVisble={isDialogVisible}
-              action={this.login}
+              action={this.props.user.length ? this.logout : this.login}
+              user={this.props.user}
             />
           </Row>
         </Container>
